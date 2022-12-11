@@ -8,7 +8,7 @@ from telegram.ext import CallbackContext
 
 from models.admin import Admin
 from models.user import User
-from utils.lang import keys
+from localization import keys
 
 
 def translate_key_to(key: str, destination_lang: str) -> str:

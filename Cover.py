@@ -31,7 +31,7 @@ from telegram.ext import Updater, CommandHandler, CallbackContext, Filters, Mess
 ##############
 # My modules #
 ##############
-import utils.lang as lp  # Language Pack
+import localization as lp  # Language Pack
 from utils import download_file, create_user_directory, convert_seconds_to_human_readable_form, \
     generate_music_info, is_user_owner, is_user_admin, reset_user_data_context, \
     save_text_into_tag, increment_usage_counter_for_user, translate_key_to, delete_file, \
@@ -41,7 +41,7 @@ from utils import download_file, create_user_directory, convert_seconds_to_human
 
 from models.admin import Admin
 from models.user import User
-from dbconfig import db
+from dbConfig import db
 
 Model.set_connection_resolver(db)
 

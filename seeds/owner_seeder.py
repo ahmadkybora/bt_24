@@ -4,7 +4,7 @@ from orator import Model
 from orator.seeds import Seeder
 from dotenv import load_dotenv
 from models.admin import Admin
-from dbconfig import db
+from dbConfig import db
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
