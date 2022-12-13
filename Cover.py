@@ -731,7 +731,7 @@ def finish_editing_tags(update: Update, context: CallbackContext) -> None:
                 duration=user_data['music_duration'],
                 chat_id=update.message.chat_id,
                 caption=f"🆔 {BOT_USERNAME}",
-                thumb=music_file
+                thumb=music_file,
                 reply_markup=start_over_button_keyboard,
                 reply_to_message_id=user_data['music_message_id']
             )
