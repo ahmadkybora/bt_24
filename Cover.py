@@ -37,7 +37,8 @@ from utils import download_file, create_user_directory, convert_seconds_to_human
     save_text_into_tag, increment_usage_counter_for_user, translate_key_to, delete_file, \
     generate_back_button_keyboard, generate_start_over_keyboard, \
     generate_module_selector_keyboard, generate_tag_editor_keyboard, save_tags_to_file, \
-    parse_cutting_range, pretty_print_size, get_dir_size_in_bytes, generate_module_selector_video_keyboard
+    parse_cutting_range, pretty_print_size, get_dir_size_in_bytes, generate_module_selector_video_keyboard, \
+    generate_module_selector_voice_keyboard
 
 from models.admin import Admin
 from models.user import User
@@ -458,6 +459,19 @@ def show_module_selector_video(update: Update, context: CallbackContext) -> None
         reply_markup=module_selector_keyboard
     )
 
+def show_module_selector_voice(update: Update, context: CallbackContext) -> None:
+    user_data = context.user_data
+    context.user_data['current_active_module'] = ''
+    lang = user_data['language']
+
+    module_selector_keyboard = generate_module_selector_voice_keyboard(lang)
+
+    update.message.reply_text(
+        translate_key_to(lp.ASK_WHICH_MODULE, lang),
+        reply_to_message_id=update.effective_message.message_id,
+        reply_markup=module_selector_keyboard
+    )
+
 def handle_video_message(update: Update, context: CallbackContext) -> None:
     message = update.message
     user_id = update.effective_user.id
@@ -518,7 +532,68 @@ def handle_video_message(update: Update, context: CallbackContext) -> None:
     delete_file(old_video_path)
 
 def handle_voice_message(update: Update, context: CallbackContext) -> None:
-    pass
+    message = update.message
+    user_id = update.effective_user.id
+    user_data = context.user_data
+    voice_duration = message.voice.duration
+    voice_file_size = message.voice.file_size
+    old_voice_path = user_data['voice_path']
+    old_art_path = user_data['voice_art_path']
+    old_new_art_path = user_data['new_voice_art_path']
+    language = user_data['language']
+
+    if voice_duration >= 3600 and voice_file_size > 48000000:
+        message.reply_text(
+            translate_key_to(lp.ERR_TOO_LARGE_FILE, language),
+            reply_markup=generate_start_over_keyboard(language)
+        )
+        return
+
+    context.bot.send_chat_action(
+        chat_id=message.chat_id,
+        action=ChatAction.TYPING
+    )
+
+    try:
+        create_user_directory(user_id)
+    except OSError:
+        message.reply_text(translate_key_to(lp.ERR_CREATING_USER_FOLDER, language))
+        logger.error("Couldn't create directory for user %s", user_id, exc_info=True)
+        return
+
+    try:
+        file_download_path = download_file(
+            user_id=user_id,
+            file_to_download=message.voice,
+            file_type='voice',
+            context=context
+        )
+    except ValueError:
+        message.reply_text(
+            translate_key_to(lp.ERR_ON_DOWNLOAD_AUDIO_MESSAGE, language),
+            reply_markup=generate_start_over_keyboard(language)
+        )
+        logger.error("Error on downloading %s's file. File type: Audio", user_id, exc_info=True)
+        return
+
+    reset_user_data_context(context)
+
+    user_data['voice_path'] = file_download_path
+    user_data['art_path'] = ''
+    user_data['voice_message_id'] = message.message_id
+    user_data['voice_duration'] = message.voice.duration
+
+    show_module_selector_voice(update, context)
+
+    increment_usage_counter_for_user(user_id=user_id)
+
+    user = User.where('user_id', '=', user_id).first()
+    user.username = update.effective_user.username
+    user.push()
+
+    delete_file(old_voice_path)
+    delete_file(old_art_path)
+    delete_file(old_new_art_path)
 
 def handle_download_message(update: Update, context: CallbackContext) -> None:
     pass
