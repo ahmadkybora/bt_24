@@ -51,8 +51,8 @@ MUSIC_CUTTER_HELP = "MUSIC_CUTTER_HELP"
 DONE = "DONE"
 OR = "OR"
 
-REPORT_BUG_MESSAGE_EN = "That's my fault! Please send a bug report here: @amirhoseinsalimii"
-REPORT_BUG_MESSAGE_FA = "این اشتباه منه! لطفا این باگ رو از اینجا گزارش کنید: @amirhoseinsalimii"
+REPORT_BUG_MESSAGE_EN = "That's my fault! Please send a bug report here: @jojo"
+REPORT_BUG_MESSAGE_FA = "این اشتباه منه! لطفا این باگ رو از اینجا گزارش کنید: @jojo"
 EG_EN = "e.g."
 EG_FA = "مثل"
 
