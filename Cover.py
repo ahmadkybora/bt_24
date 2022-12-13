@@ -37,7 +37,7 @@ from utils import download_file, create_user_directory, convert_seconds_to_human
     save_text_into_tag, increment_usage_counter_for_user, translate_key_to, delete_file, \
     generate_back_button_keyboard, generate_start_over_keyboard, \
     generate_module_selector_keyboard, generate_tag_editor_keyboard, save_tags_to_file, \
-    parse_cutting_range, pretty_print_size, get_dir_size_in_bytes
+    parse_cutting_range, pretty_print_size, get_dir_size_in_bytes, generate_module_selector_video_keyboard
 
 from models.admin import Admin
 from models.user import User
@@ -445,6 +445,83 @@ def handle_photo_message(update: Update, context: CallbackContext) -> None:
         reply_message = translate_key_to(lp.DEFAULT_MESSAGE, lang)
         message.reply_text(reply_message, reply_markup=ReplyKeyboardRemove())
 
+def show_module_selector_video(update: Update, context: CallbackContext) -> None:
+    user_data = context.user_data
+    context.user_data['current_active_module'] = ''
+    lang = user_data['language']
+
+    module_selector_keyboard = generate_module_selector_video_keyboard(lang)
+
+    update.message.reply_text(
+        translate_key_to(lp.ASK_WHICH_MODULE, lang),
+        reply_to_message_id=update.effective_message.message_id,
+        reply_markup=module_selector_keyboard
+    )
+
+def handle_video_message(update: Update, context: CallbackContext) -> None:
+    message = update.message
+    user_id = update.effective_user.id
+    user_data = context.user_data
+    video_duration = message.video.duration
+    video_file_size = message.video.file_size
+    old_video_path = user_data['video_path']
+    language = user_data['language']
+
+    if video_duration >= 3600 and video_file_size > 48000000:
+        message.reply_text(
+            translate_key_to(lp.ERR_TOO_LARGE_FILE, language),
+            reply_markup=generate_start_over_keyboard(language)
+        )
+        return
+
+    context.bot.send_chat_action(
+        chat_id=message.chat_id,
+        action=ChatAction.TYPING
+    )
+
+    try:
+        create_user_directory(user_id)
+    except OSError:
+        message.reply_text(translate_key_to(lp.ERR_CREATING_USER_FOLDER, language))
+        logger.error("Couldn't create directory for user %s", user_id, exc_info=True)
+        return
+
+    try:
+        file_download_path = download_file(
+            user_id=user_id,
+            file_to_download=message.video,
+            file_type='video',
+            context=context
+        )
+    except ValueError:
+        message.reply_text(
+            translate_key_to(lp.ERR_ON_DOWNLOAD_VIDEO_MESSAGE, language),
+            reply_markup=generate_start_over_keyboard(language)
+        )
+        logger.error("Error on downloading %s's file. File type: Video", user_id, exc_info=True)
+        return
+
+    reset_user_data_context(context)
+
+    user_data['video_path'] = file_download_path
+    user_data['video_message_id'] = message.message_id
+    user_data['video_duration'] = message.video.duration
+
+    show_module_selector_video(update, context)
+
+    increment_usage_counter_for_user(user_id=user_id)
+
+    user = User.where('user_id', '=', user_id).first()
+    user.username = update.effective_user.username
+    user.push()
+
+    delete_file(old_video_path)
+
+def handle_voice_message(update: Update, context: CallbackContext) -> None:
+    pass
+
+def handle_download_message(update: Update, context: CallbackContext) -> None:
+    pass
 
 def prepare_for_artist(update: Update, context: CallbackContext) -> None:
     if len(context.user_data) == 0:
@@ -830,6 +907,9 @@ def main():
     #################
     add_handler(MessageHandler(Filters.audio, handle_music_message))
     add_handler(MessageHandler(Filters.photo, handle_photo_message))
+    add_handler(MessageHandler(Filters.video, handle_video_message))
+    add_handler(MessageHandler(Filters.voice, handle_voice_message))
+    add_handler(MessageHandler(Filters.entity("url"), handle_download_message))
 
     ############################
     # Change Language Handlers #

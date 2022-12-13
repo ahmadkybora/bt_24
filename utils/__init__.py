@@ -298,7 +298,29 @@ def generate_module_selector_keyboard(language: str) -> ReplyKeyboardMarkup:
         )
     )
 
+def generate_module_selector_video_keyboard(language: str) -> ReplyKeyboardMarkup:
+    """Create an return an instance of `module_selector_video_keyboard`
 
+
+    **Keyword arguments:**
+     - language (str) -- The desired language to generate labels
+
+    **Returns:**
+     ReplyKeyboardMarkup instance
+    """
+    return (
+        ReplyKeyboardMarkup(
+            [
+                [
+                    translate_key_to('BTN_CONVERT_VIDEO_TO_CIRCLE', language),
+                    translate_key_to('BTN_CONVERT_VIDEO_TO_GIF', language),
+                ],
+            ],
+            resize_keyboard=True,
+            one_time_keyboard=True,
+        )
+    )
+    
 def generate_tag_editor_keyboard(language: str) -> ReplyKeyboardMarkup:
     """Create an return an instance of `tag_editor_keyboard`
 
