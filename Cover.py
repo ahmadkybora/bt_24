@@ -785,11 +785,13 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
 
             try:
                 with open(music_path_cut, 'rb') as music_file:
+                    thumb = open(music_path_cut, 'rb').read()
                     # FIXME: After sending the file, the album art can't be read back
                     context.bot.send_audio(
                         audio=music_file,
                         chat_id=update.message.chat_id,
                         duration=diff_sec,
+                        thumb=thumb,
                         caption=f"*From*: {convert_seconds_to_human_readable_form(beginning_sec)}\n"
                                 f"*To*: {convert_seconds_to_human_readable_form(ending_sec)}\n\n"
                                 f"🆔 {BOT_USERNAME}",
@@ -878,12 +880,13 @@ def finish_editing_tags(update: Update, context: CallbackContext) -> None:
 
     try:
         with open(music_path, 'rb') as music_file:
+            thumb = open(new_art_path, 'rb').read()
             context.bot.send_audio(
                 audio=music_file,
                 duration=user_data['music_duration'],
                 chat_id=update.message.chat_id,
                 caption=f"🆔 {BOT_USERNAME}",
-                thumb=music_file,
+                thumb=thumb,
                 reply_markup=start_over_button_keyboard,
                 reply_to_message_id=user_data['music_message_id']
             )
