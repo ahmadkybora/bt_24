@@ -113,14 +113,42 @@ def reset_user_data_context(context: CallbackContext) -> None:
     user_data = context.user_data
     language = user_data['language'] if ('language' in user_data) else 'en'
 
+    if 'voice_path' in user_data:
+        delete_file(user_data['voice_path'])
+    if 'voice_art_path' in user_data:
+        delete_file(user_data['voice_art_path'])
+    if 'new_voice_art_path' in user_data:
+        delete_file(user_data['new_voice_art_path'])
     if 'music_path' in user_data:
         delete_file(user_data['music_path'])
     if 'art_path' in user_data:
         delete_file(user_data['art_path'])
     if 'new_art_path' in user_data:
         delete_file(user_data['new_art_path'])
+    if 'video_path' in user_data:
+        delete_file(user_data['video_path'])
+    if 'video_art_path' in user_data:
+        delete_file(user_data['video_art_path'])
+    if 'new_video_art_path' in user_data:
+        delete_file(user_data['new_video_art_path'])
+    if 'gif' in user_data:
+        delete_file(user_data['gif'])
 
     new_user_data = {
+        'convert_video_to_gif': False,
+        'convert_video_to_circle': False,
+        'convert_audio_to_voice': False,
+        'edit_tag_music': False,
+        'download_from_link': False,
+        'voice_path': '',
+        'voice_art_path': '',
+        'new_voice_art_path': '',
+        'video_path': '',
+        'video_art_path': '',
+        'new_video_art_path': '',
+        'gif': '',
+        'video_message_id': '',
+        'video_duration': '',
         'tag_editor': {},
         'music_path': '',
         'music_duration': 0,
@@ -378,6 +406,27 @@ def generate_tag_editor_keyboard(language: str) -> ReplyKeyboardMarkup:
         )
     )
 
+def generate_tag_editor_video_keyboard(language: str) -> ReplyKeyboardMarkup:
+    """Create an return an instance of `tag_editor_keyboard`
+
+
+    **Keyword arguments:**
+     - language (str) -- The desired language to generate labels
+
+    **Returns:**
+     ReplyKeyboardMarkup instance
+    """
+    return (
+        ReplyKeyboardMarkup(
+            [
+                [
+                    translate_key_to('BTN_CONVERT_VIDEO_TO_CIRCLE', language),
+                    translate_key_to('BTN_CONVERT_VIDEO_TO_GIF', language),
+                ],
+            ],
+            resize_keyboard=True,
+        )
+    )
 
 def save_tags_to_file(file: str, tags: dict, new_art_path: str) -> str:
     """Create an return an instance of `tag_editor_keyboard`
