@@ -546,19 +546,7 @@ def handle_convert_video_message(update: Update, context: CallbackContext) -> No
     tag_editor_keyboard = generate_tag_editor_video_keyboard(lang)
 
     if video_path:
-        # with open(video_path, 'rb') as video_file:
-        #     message.reply_video_note(
-        #         video_note=video_file,
-        #         reply_to_message_id=update.effective_message.message_id,
-        #         reply_markup=tag_editor_keyboard,
-        #     )
         try:
-            # file_download_path = download_file(
-            #     user_id=user_id,
-            #     file_to_download=message.photo[len(message.photo) - 1],
-            #     file_type='photo',
-            #     context=context
-            # )
             reply_message = f"{translate_key_to(lp.ALBUM_ART_CHANGED, lang)} " \
                             f"{translate_key_to(lp.CLICK_PREVIEW_MESSAGE, lang)} " \
                             f"{translate_key_to(lp.OR, lang).upper()} " \
@@ -598,19 +586,7 @@ def handle_convert_video_to_gif_message(update: Update, context: CallbackContext
     tag_editor_keyboard = generate_tag_editor_video_keyboard(lang)
 
     if video_path:
-        # with open(video_path, 'rb') as video_file:
-        #     message.reply_video_note(
-        #         video_note=video_file,
-        #         reply_to_message_id=update.effective_message.message_id,
-        #         reply_markup=tag_editor_keyboard,
-        #     )
         try:
-            # file_download_path = download_file(
-            #     user_id=user_id,
-            #     file_to_download=message.photo[len(message.photo) - 1],
-            #     file_type='photo',
-            #     context=context
-            # )
             reply_message = f"{translate_key_to(lp.ALBUM_ART_CHANGED, lang)} " \
                             f"{translate_key_to(lp.CLICK_PREVIEW_MESSAGE, lang)} " \
                             f"{translate_key_to(lp.OR, lang).upper()} " \
@@ -708,27 +684,8 @@ def handle_convert_voice_message(update: Update, context: CallbackContext) -> No
     input_voice_path = user_data['voice_path']
     music_path = f"{user_data['voice_path']}.mp3"
     lang = user_data['language']
-    # user_data['current_active_module'] = 'mp3_to_voice_converter'  # TODO: Make modules a dict
-
-    # logging.error(input_voice_path)
-    # logging.error(music_path)
 
     os.system(f"ffmpeg -i {input_voice_path} -map_metadata 0:s:0 {music_path}")
-    # os.system(["ffmpeg", "-n", "-i", input_voice_path, "-acodec", "libmp3lame", "-ab", "128k", music_path])
-
-    # os.system(
-    #     f"ffmpeg -i -y {input_voice_path} -ac 1 -map 0:a -codec:a opus -b:a 128k -vbr off \
-    #      {input_voice_path}"
-    # )
-    # os.system(f"ffmpeg -i {input_voice_path} -c:a libvorbis -q:a 4 {music_path}")
-
-    # os.system(f"ffmpeg -i {input_voice_path} -c:a aac libmp3lame -q:a 4 {music_path}")
-    # voice_path = user_data['voice_path']
-
-    # myffmpegcommand(voice_path, user_data)
-
-    # lang = user_data['language']
-
     start_over_button_keyboard = generate_start_over_keyboard(lang)
 
     context.bot.send_chat_action(
@@ -757,75 +714,6 @@ def handle_convert_voice_message(update: Update, context: CallbackContext) -> No
 
     reset_user_data_context(context)
 
-    # new_voice_path = user_data['new_voice_art_path']
-
-    # start_over_button_keyboard = generate_start_over_keyboard(lang)
-
-    # try:
-    #     with open(new_voice_path, 'rb') as voice:
-    #         message.reply_voice(
-    #             voice=voice,
-    #             reply_to_message_id=update.effective_message.message_id,
-    #             reply_markup=start_over_button_keyboard,
-    #         )
-    # except (TelegramError, BaseException) as error:
-    #     message.reply_text(
-    #         translate_key_to(lp.ERR_ON_UPLOADING, lang),
-    #         reply_markup=start_over_button_keyboard
-    #     )
-    #     logger.exception("Telegram error: %s", error)
-
-    # reset_user_data_context(context)
-
-    # message = update.message
-    # user_id = update.effective_user.id
-    # user_data = context.user_data
-    # voice_path = user_data['voice_path']
-    # lang = user_data['language']
-
-    # user_data['current_active_module'] = 'tag_editor'
-
-    # tag_editor_context = user_data['tag_editor']
-    # tag_editor_context['current_tag'] = ''
-
-    # tag_editor_keyboard = generate_module_selector_voice_keyboard(lang)
-
-    # if voice_path:
-    #     # with open(video_path, 'rb') as video_file:
-    #     #     message.reply_video_note(
-    #     #         video_note=video_file,
-    #     #         reply_to_message_id=update.effective_message.message_id,
-    #     #         reply_markup=tag_editor_keyboard,
-    #     #     )
-    #     try:
-    #         # file_download_path = download_file(
-    #         #     user_id=user_id,
-    #         #     file_to_download=message.photo[len(message.photo) - 1],
-    #         #     file_type='photo',
-    #         #     context=context
-    #         # )
-    #         reply_message = f"{translate_key_to(lp.ALBUM_ART_CHANGED, lang)} " \
-    #                         f"{translate_key_to(lp.CLICK_PREVIEW_MESSAGE, lang)} " \
-    #                         f"{translate_key_to(lp.OR, lang).upper()} " \
-    #                         f"{translate_key_to(lp.CLICK_DONE_MESSAGE, lang).lower()}"
-    #         user_data['voice_path'] = voice_path
-    #         user_data['convert_audio_to_voice'] = True
-    #         message.reply_text(reply_message, reply_markup=tag_editor_keyboard)
-    #     except (ValueError, BaseException):
-    #         message.reply_text(translate_key_to(lp.ERR_ON_DOWNLOAD_AUDIO_MESSAGE, lang))
-    #         logger.error(
-    #             "Error on downloading %s's file. File type: Photo",
-    #             user_id,
-    #             exc_info=True
-    #         )
-    #         return
-    # else:
-    #     message.reply_text(
-    #         generate_music_info(tag_editor_context).format(f"\n🆔 {BOT_USERNAME}"),
-    #         reply_to_message_id=update.effective_message.message_id,
-    #         reply_markup=tag_editor_keyboard
-    #     )
-
 def handle_download_message(update: Update, context: CallbackContext) -> None:
     pass
 
@@ -838,7 +726,6 @@ def prepare_for_artist(update: Update, context: CallbackContext) -> None:
 
     update.message.reply_text(message_text)
 
-
 def prepare_for_title(update: Update, context: CallbackContext) -> None:
     if len(context.user_data) == 0:
         message_text = translate_key_to(lp.DEFAULT_MESSAGE, context.user_data['language'])
@@ -847,7 +734,6 @@ def prepare_for_title(update: Update, context: CallbackContext) -> None:
         message_text = translate_key_to(lp.ASK_FOR_TITLE, context.user_data['language'])
 
     update.message.reply_text(message_text)
-
 
 def throw_not_implemented(update: Update, context: CallbackContext) -> None:
     lang = context.user_data['language']
@@ -859,7 +745,6 @@ def throw_not_implemented(update: Update, context: CallbackContext) -> None:
         reply_markup=back_button_keyboard
     )
 
-
 def prepare_for_album(update: Update, context: CallbackContext) -> None:
     if len(context.user_data) == 0:
         message_text = translate_key_to(lp.DEFAULT_MESSAGE, context.user_data['language'])
@@ -868,7 +753,6 @@ def prepare_for_album(update: Update, context: CallbackContext) -> None:
         message_text = translate_key_to(lp.ASK_FOR_ALBUM, context.user_data['language'])
 
     update.message.reply_text(message_text)
-
 
 def prepare_for_genre(update: Update, context: CallbackContext) -> None:
     if len(context.user_data) == 0:
@@ -879,7 +763,6 @@ def prepare_for_genre(update: Update, context: CallbackContext) -> None:
 
     update.message.reply_text(message_text)
 
-
 def prepare_for_year(update: Update, context: CallbackContext) -> None:
     if len(context.user_data) == 0:
         message_text = translate_key_to(lp.DEFAULT_MESSAGE, context.user_data['language'])
@@ -888,7 +771,6 @@ def prepare_for_year(update: Update, context: CallbackContext) -> None:
         message_text = translate_key_to(lp.ASK_FOR_YEAR, context.user_data['language'])
 
     update.message.reply_text(message_text)
-
 
 def prepare_for_album_art(update: Update, context: CallbackContext) -> None:
     if len(context.user_data) == 0:
@@ -899,7 +781,6 @@ def prepare_for_album_art(update: Update, context: CallbackContext) -> None:
 
     update.message.reply_text(message_text)
 
-
 def prepare_for_disknumber(update: Update, context: CallbackContext) -> None:
     if len(context.user_data) == 0:
         message_text = translate_key_to(lp.DEFAULT_MESSAGE, context.user_data['language'])
@@ -909,7 +790,6 @@ def prepare_for_disknumber(update: Update, context: CallbackContext) -> None:
 
     update.message.reply_text(message_text)
 
-
 def prepare_for_tracknumber(update: Update, context: CallbackContext) -> None:
     if len(context.user_data) == 0:
         message_text = translate_key_to(lp.DEFAULT_MESSAGE, context.user_data['language'])
@@ -918,7 +798,6 @@ def prepare_for_tracknumber(update: Update, context: CallbackContext) -> None:
         message_text = translate_key_to(lp.ASK_FOR_TRACK_NUMBER, context.user_data['language'])
 
     update.message.reply_text(message_text)
-
 
 def handle_responses(update: Update, context: CallbackContext) -> None:
     message = update.message
@@ -1039,6 +918,9 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
             delete_file(music_path_cut)
 
             reset_user_data_context(context)
+
+    elif current_active_module == 'music_cutter':
+        pass
     else:
         if music_path:
             if user_data['current_active_module']:
@@ -1129,10 +1011,8 @@ def finish_editing_tags(update: Update, context: CallbackContext) -> None:
 
     reset_user_data_context(context)
 
-
 def command_about(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(translate_key_to(lp.ABOUT_MESSAGE, context.user_data['language']))
-
 
 def show_language_keyboard(update: Update, _context: CallbackContext) -> None:
     language_button_keyboard = ReplyKeyboardMarkup(
@@ -1148,7 +1028,6 @@ def show_language_keyboard(update: Update, _context: CallbackContext) -> None:
         "لطفا زبان را انتخاب کنید:",
         reply_markup=language_button_keyboard,
     )
-
 
 def set_language(update: Update, context: CallbackContext) -> None:
     lang = update.message.text.lower()
@@ -1169,7 +1048,6 @@ def set_language(update: Update, context: CallbackContext) -> None:
     user = User.where('user_id', '=', user_id).first()
     user.language = user_data['language']
     user.push()
-
 
 def ignore_file(update: Update, context: CallbackContext) -> None:
     reset_user_data_context(context)
@@ -1238,7 +1116,7 @@ def main():
             show_module_selector)
     )
     add_handler(MessageHandler(
-        (Filters.regex('^(🆕 New File)$') | Filters.regex('^(🆕 فایل جدید)$')),
+        (Filters.regex('^(🆕 New File or Link)$') | Filters.regex('^(🆕 فایل یا لینک جدید)$')),
         start_over)
     )
     add_handler(MessageHandler(
@@ -1334,7 +1212,6 @@ def main():
 
     updater.start_polling()
     updater.idle()
-
 
 if __name__ == '__main__':
     main()

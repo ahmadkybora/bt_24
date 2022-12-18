@@ -24,7 +24,9 @@ MUSIC_LENGTH = "MUSIC_LENGTH"
 REPORT_BUG_MESSAGE = "REPORT_BUG_MESSAGE"
 ERR_CREATING_USER_FOLDER = "ERR_CREATING_USER_FOLDER"
 ERR_ON_DOWNLOAD_AUDIO_MESSAGE = "ERR_ON_DOWNLOAD_AUDIO_MESSAGE"
+ERR_ON_DOWNLOAD_VIDEO_MESSAGE = "ERR_ON_DOWNLOAD_VIDEO_MESSAGE"
 ERR_ON_DOWNLOAD_PHOTO_MESSAGE = "ERR_ON_DOWNLOAD_PHOTO_MESSAGE"
+ERR_ON_DOWNLOAD_LINK_MESSAGE = "ERR_ON_DOWNLOAD_LINK_MESSAGE"
 ERR_TOO_LARGE_FILE = "ERR_TOO_LARGE_FILE"
 ERR_ON_READING_TAGS = "ERR_ON_READING_TAGS"
 ERR_ON_UPDATING_TAGS = "ERR_ON_UPDATING_TAGS"
@@ -48,9 +50,11 @@ BTN_TRACK_NUMBER = "BTN_TRACK_NUMBER"
 BTN_BACK = "BTN_BACK"
 BTN_NEW_FILE = "BTN_NEW_FILE"
 MUSIC_CUTTER_HELP = "MUSIC_CUTTER_HELP"
+NUMBER_OF_FILE_SENT = "NUMBER_OF_FILE_SENT"
 DONE = "DONE"
 OR = "OR"
-
+SEND_TO_OTHERS = "SEND_TO_OTHERS"
+SEND_TO_CHANNEL = "SEND_TO_CHANNEL"
 REPORT_BUG_MESSAGE_EN = "That's my fault! Please send a bug report here: @jojo"
 REPORT_BUG_MESSAGE_FA = "این اشتباه منه! لطفا این باگ رو از اینجا گزارش کنید: @jojo"
 EG_EN = "e.g."
@@ -194,12 +198,20 @@ keys = {
         "fa": f"به مشکل خوردم... {REPORT_BUG_MESSAGE_FA}",
     },
     ERR_ON_DOWNLOAD_AUDIO_MESSAGE: {
-        "en": f"Sorry, I couldn't download your file... {REPORT_BUG_MESSAGE_EN}",
-        "fa": f"متاسفم، نتونستم فایلت رو دانلود کنم... {REPORT_BUG_MESSAGE_FA}",
+        "en": f"Sorry, I couldn't download your audio... {REPORT_BUG_MESSAGE_EN}",
+        "fa": f"متاسفم، نتونستم موزیکت رو دانلود کنم... {REPORT_BUG_MESSAGE_FA}",
     },
     ERR_ON_DOWNLOAD_PHOTO_MESSAGE: {
-        "en": f"Sorry, I couldn't download your file... {REPORT_BUG_MESSAGE_EN}",
-        "fa": f"متاسفم، نتونستم فایلت رو دانلود کنم... {REPORT_BUG_MESSAGE_FA}",
+        "en": f"Sorry, I couldn't download your photo... {REPORT_BUG_MESSAGE_EN}",
+        "fa": f"متاسفم، نتونستم عکست رو دانلود کنم... {REPORT_BUG_MESSAGE_FA}",
+    },
+    ERR_ON_DOWNLOAD_VIDEO_MESSAGE: {
+        "en": f"Sorry, I couldn't download your video... {REPORT_BUG_MESSAGE_EN}",
+        "fa": f"متاسفم، نتونستم ویدیوت رو دانلود کنم... {REPORT_BUG_MESSAGE_FA}",
+    },
+    ERR_ON_DOWNLOAD_LINK_MESSAGE: {
+        "en": f"Sorry, I couldn't download your link... {REPORT_BUG_MESSAGE_EN}",
+        "fa": f"متاسفم، نتونستم لینکت رو دانلود کنم... {REPORT_BUG_MESSAGE_FA}",
     },
     ERR_TOO_LARGE_FILE: {
         "en": "This file is too big that I can process, sorry!",
@@ -286,8 +298,8 @@ keys = {
         "fa": "🔙 بازگشت",
     },
     BTN_NEW_FILE: {
-        "en": "🆕 New File",
-        "fa": "🆕 فایل جدید",
+        "en": "🆕 New File or Link",
+        "fa": "🆕 فایل یا لینک جدید",
     },
     MUSIC_CUTTER_HELP: {
         "en": "\n\nNow send me which part of the music you want to cut out?\n"
@@ -317,4 +329,16 @@ keys = {
         "en": "or",
         "fa": "یا",
     },
+    SEND_TO_CHANNEL: {
+        "en": "send to channel",
+        "fa": "ارسال به کانال",
+    },
+    SEND_TO_OTHERS: {
+        "en": "send to others",
+        "fa": "ارسال به دیگران",
+    },
+    NUMBER_OF_FILE_SENT: {
+        "en": "Number of file sent: ",
+        "fa":  "تعداد فایل های ارسال شده: ",
+    }
 }
