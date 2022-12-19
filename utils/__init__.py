@@ -1,6 +1,7 @@
 import os
 import re
 from pathlib import Path
+import logging
 
 import music_tag
 from telegram import ReplyKeyboardMarkup
@@ -10,6 +11,7 @@ from models.admin import Admin
 from models.user import User
 from localization import keys
 
+logger = logging.getLogger()
 
 def translate_key_to(key: str, destination_lang: str) -> str:
     """Find the specified key in the `keys` dictionary and returns the corresponding
@@ -256,7 +258,7 @@ def download_file(user_id: int, file_to_download, file_type: str, context: Callb
         file_extension = mime_type.split("/")[-1]
 
     file_download_path = f"{user_download_dir}/{file_id.file_id}.{file_extension}"
-
+    logger.info(file_download_path)
     try:
         file_id.download(f"{user_download_dir}/{file_id.file_id}.{file_extension}")
     except ValueError as error:
