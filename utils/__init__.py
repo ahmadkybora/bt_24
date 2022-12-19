@@ -246,6 +246,14 @@ def download_file(user_id: int, file_to_download, file_type: str, context: Callb
     elif file_type == 'photo':
         file_id = context.bot.get_file(file_to_download.file_id)
         file_extension = 'jpg'
+    elif file_type == 'video':
+        file_id = context.bot.get_file(file_to_download.file_id)
+        file_name = file_to_download.file_name
+        file_extension = file_name.split(".")[-1]
+    elif file_type == 'voice':
+        file_id = context.bot.get_file(file_to_download.file_id)
+        mime_type = file_to_download.mime_type
+        file_extension = mime_type.split("/")[-1]
 
     file_download_path = f"{user_download_dir}/{file_id.file_id}.{file_extension}"
 

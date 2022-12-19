@@ -1208,7 +1208,7 @@ def main():
     # Catch-all Handler #
     #####################
     add_handler(MessageHandler(Filters.text, handle_responses))
-    add_handler(MessageHandler((Filters.video | Filters.document | Filters.contact), ignore_file))
+    # add_handler(MessageHandler((Filters.video | Filters.document | Filters.contact), ignore_file))
 
     updater.start_polling()
     updater.idle()
