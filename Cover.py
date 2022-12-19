@@ -461,7 +461,7 @@ def show_module_selector_video(update: Update, context: CallbackContext) -> None
 
 def show_module_selector_voice(update: Update, context: CallbackContext) -> None:
     user_data = context.user_data
-    context.user_data['current_active_module'] = ''
+    context.user_data['current_active_module'] = 'convert_voice_to_music'
     lang = user_data['language']
 
     module_selector_keyboard = generate_module_selector_voice_keyboard(lang)
@@ -919,8 +919,8 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
 
             reset_user_data_context(context)
 
-    elif current_active_module == 'music_cutter':
-        pass
+    elif current_active_module == 'convert_voice_to_music':
+        logger.error("inja")
     else:
         if music_path:
             if user_data['current_active_module']:

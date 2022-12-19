@@ -36,7 +36,10 @@ ERR_OUT_OF_RANGE = "ERR_OUT_OF_RANGE"
 ERR_MALFORMED_RANGE = "ERR_MALFORMED_RANGE"
 ERR_BEGINNING_POINT_IS_GREATER = "ERR_BEGINNING_POINT_IS_GREATER"
 BTN_TAG_EDITOR = "BTN_TAG_EDITOR"
+BTN_CONVERT_VIDEO_TO_CIRCLE = "BTN_CONVERT_VIDEO_TO_CIRCLE"
+BTN_CONVERT_VIDEO_TO_GIF = "BTN_CONVERT_VIDEO_TO_GIF"
 BTN_MUSIC_TO_VOICE_CONVERTER = "BTN_MUSIC_TO_VOICE_CONVERTER"
+BTN_CONVERT_VOICE_TO_AUDIO = "BTN_CONVERT_VOICE_TO_AUDIO"
 BTN_MUSIC_CUTTER = "BTN_MUSIC_CUTTER"
 BTN_BITRATE_CHANGER = "BTN_BITRATE_CHANGER"
 BTN_ARTIST = "BTN_ARTIST"
@@ -280,6 +283,18 @@ keys = {
     BTN_YEAR: {
         "en": "📅 Year",
         "fa": "📅 سال",
+    },
+    BTN_CONVERT_VIDEO_TO_CIRCLE: {
+        "en": "🎥 convert to circular video",
+        "fa": "🎥 تبدیل به ویدیو دایره‌ای",
+    },
+    BTN_CONVERT_VIDEO_TO_GIF: {
+        "en": "📷 convert video to gif",
+        "fa": "📷 تبدیل ویدیو به گیف",
+    },
+    BTN_CONVERT_VOICE_TO_AUDIO: {
+        "en": "🔊 convert voice to audio",
+        "fa": "🔊 تبدیل صدا به موزیک",
     },
     BTN_ALBUM_ART: {
         "en": "🖼 Album Art",
