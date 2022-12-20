@@ -73,7 +73,6 @@ logger.addHandler(stdout_handler)
 # Handlers #
 ############
 
-
 def command_start(update: Update, context: CallbackContext) -> None:
     user_id = update.effective_user.id
     username = update.effective_user.username
@@ -99,7 +98,6 @@ def command_start(update: Update, context: CallbackContext) -> None:
 
         logger.info("A user with id %s has been started to use the bot.", user_id)
 
-
 def start_over(update: Update, context: CallbackContext) -> None:
     reset_user_data_context(context)
 
@@ -109,10 +107,8 @@ def start_over(update: Update, context: CallbackContext) -> None:
         reply_markup=ReplyKeyboardRemove()
     )
 
-
 def command_help(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(translate_key_to(lp.HELP_MESSAGE, context.user_data['language']))
-
 
 def show_module_selector(update: Update, context: CallbackContext) -> None:
     user_data = context.user_data
@@ -126,7 +122,6 @@ def show_module_selector(update: Update, context: CallbackContext) -> None:
         reply_to_message_id=update.effective_message.message_id,
         reply_markup=module_selector_keyboard
     )
-
 
 def handle_music_message(update: Update, context: CallbackContext) -> None:
     message = update.message
@@ -231,7 +226,6 @@ def handle_music_message(update: Update, context: CallbackContext) -> None:
     delete_file(old_art_path)
     delete_file(old_new_art_path)
 
-
 def add_admin(update: Update, _context: CallbackContext) -> None:
     user_id = update.message.text.partition(' ')[2]
     user_id = int(user_id)
@@ -243,7 +237,6 @@ def add_admin(update: Update, _context: CallbackContext) -> None:
         admin.save()
 
         update.message.reply_text(f"User {user_id} has been added as admins")
-
 
 def del_admin(update: Update, _context: CallbackContext) -> None:
     user_id = update.message.text.partition(' ')[2]
@@ -258,10 +251,8 @@ def del_admin(update: Update, _context: CallbackContext) -> None:
         else:
             update.message.reply_text(f"User {user_id} is not admin")
 
-
 def send_to_all():
     pass
-
 
 def command_stats(update: Update, _context: CallbackContext) -> None:
     if is_user_admin(update.effective_user.id):
@@ -289,7 +280,6 @@ def command_stats(update: Update, _context: CallbackContext) -> None:
             " used)\n"
         )
 
-
 def command_list_users(update: Update, _context: CallbackContext) -> None:
     if is_user_admin(update.effective_user.id):
         users = User.all()
@@ -304,7 +294,6 @@ def command_list_users(update: Update, _context: CallbackContext) -> None:
             f"{reply_message}",
             parse_mode='',
         )
-
 
 def handle_music_tag_editor(update: Update, context: CallbackContext) -> None:
     message = update.message
@@ -334,7 +323,6 @@ def handle_music_tag_editor(update: Update, context: CallbackContext) -> None:
             reply_to_message_id=update.effective_message.message_id,
             reply_markup=tag_editor_keyboard
         )
-
 
 def handle_music_to_voice_converter(update: Update, context: CallbackContext) -> None:
     message = update.message
@@ -383,7 +371,6 @@ def handle_music_to_voice_converter(update: Update, context: CallbackContext) ->
 
     reset_user_data_context(context)
 
-
 def handle_music_cutter(update: Update, context: CallbackContext) -> None:
     user_data = context.user_data
     user_data['current_active_module'] = 'music_cutter'
@@ -398,11 +385,9 @@ def handle_music_cutter(update: Update, context: CallbackContext) -> None:
         reply_markup=back_button_keyboard
     )
 
-
 def handle_music_bitrate_changer(update: Update, context: CallbackContext) -> None:
     throw_not_implemented(update, context)
     context.user_data['current_active_module'] = ''
-
 
 def handle_photo_message(update: Update, context: CallbackContext) -> None:
     user_data = context.user_data
