@@ -42,6 +42,8 @@ BTN_MUSIC_TO_VOICE_CONVERTER = "BTN_MUSIC_TO_VOICE_CONVERTER"
 BTN_CONVERT_VOICE_TO_AUDIO = "BTN_CONVERT_VOICE_TO_AUDIO"
 BTN_MUSIC_CUTTER = "BTN_MUSIC_CUTTER"
 BTN_BITRATE_CHANGER = "BTN_BITRATE_CHANGER"
+BTN_SEND_TO_OTHERS = "BTN_SEND_TO_OTHERS"
+BTN_SEND_TO_CHANELLS = "BTN_SEND_TO_CHANELLS"
 BTN_ARTIST = "BTN_ARTIST"
 BTN_TITLE = "BTN_TITLE"
 BTN_ALBUM = "BTN_ALBUM"
@@ -263,6 +265,14 @@ keys = {
     BTN_BITRATE_CHANGER: {
         "en": "🎙 Bitrate Changer",
         "fa": "🎙 تغییر بیت ریت",
+    },
+    BTN_SEND_TO_OTHERS: {
+        "en": "🎙 Send to others",
+        "fa": "🎙 ارسال به دیگران",
+    },
+    BTN_SEND_TO_CHANELLS: {
+        "en": "🎙 Send to channel",
+        "fa": "🎙 ارسال به کانال",
     },
     BTN_ARTIST: {
         "en": "🗣 Artist",

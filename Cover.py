@@ -1097,8 +1097,8 @@ def main():
     # Module Selector Handlers #
     ############################
     add_handler(MessageHandler(
-            (Filters.regex('^(🔙 Back)$') | Filters.regex('^(🔙 بازگشت)$')),
-            show_module_selector)
+        (Filters.regex('^(🔙 Back)$') | Filters.regex('^(🔙 بازگشت)$')),
+        show_module_selector)
     )
     add_handler(MessageHandler(
         (Filters.regex('^(🆕 New File or Link)$') | Filters.regex('^(🆕 فایل یا لینک جدید)$')),
@@ -1113,12 +1113,12 @@ def main():
         handle_music_to_voice_converter)
     )
     add_handler(MessageHandler(
-            (Filters.regex('^(✂️ Music Cutter)$') | Filters.regex('^(✂️ بریدن آهنگ)$')),
-            handle_music_cutter)
+        (Filters.regex('^(✂️ Music Cutter)$') | Filters.regex('^(✂️ بریدن آهنگ)$')),
+        handle_music_cutter)
     )
     add_handler(MessageHandler(
-            (Filters.regex('^(🎙 Bitrate Changer)$') | Filters.regex('^(🎙 تغییر بیت ریت)$')),
-            handle_music_bitrate_changer)
+        (Filters.regex('^(🎙 Bitrate Changer)$') | Filters.regex('^(🎙 تغییر بیت ریت)$')),
+        handle_music_bitrate_changer)
     )
 
     #######################
