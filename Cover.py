@@ -1042,7 +1042,14 @@ def ignore_file(update: Update, context: CallbackContext) -> None:
     )
 
 def send_to_others(update: Update, context: CallbackContext) -> None:
-    pass
+    user_data = context.user_data
+    context.user_data['current_active_module'] = 'send_to_others'
+    lang = user_data['language']
+
+    update.message.reply_text(
+        translate_key_to(lp.SEND_TO_CHANNEL_MESSAGE, lang),
+        reply_to_message_id=update.effective_message.message_id,
+    )
 
 def send_to_channel(update: Update, context: CallbackContext) -> None:
     pass

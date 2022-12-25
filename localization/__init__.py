@@ -59,6 +59,8 @@ NUMBER_OF_FILE_SENT = "NUMBER_OF_FILE_SENT"
 DONE = "DONE"
 OR = "OR"
 SEND_TO_OTHERS = "SEND_TO_OTHERS"
+SEND_TO_OTHERS_MESSAGE = "SEND_TO_OTHERS_MESSAGE"
+SEND_TO_CHANNEL_MESSAGE = "SEND_TO_CHANNEL_MESSAGE"
 SEND_TO_CHANNEL = "SEND_TO_CHANNEL"
 REPORT_BUG_MESSAGE_EN = "That's my fault! Please send a bug report here: @jojo"
 REPORT_BUG_MESSAGE_FA = "این اشتباه منه! لطفا این باگ رو از اینجا گزارش کنید: @jojo"
@@ -361,6 +363,14 @@ keys = {
     SEND_TO_OTHERS: {
         "en": "send to others",
         "fa": "ارسال به دیگران",
+    },
+    SEND_TO_CHANNEL_MESSAGE: {
+        "en": "",
+        "fa": ""
+    },
+    SEND_TO_OTHERS_MESSAGE: {
+        "en": "",
+        "fa": "آیدی کانالتو با @ برام بفرست یا اگه خصوصیه و آیدی نداره، یکی از پست‌های متنی شو فروارد کن:"
     },
     NUMBER_OF_FILE_SENT: {
         "en": "Number of file sent: ",
