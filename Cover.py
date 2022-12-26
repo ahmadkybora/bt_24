@@ -977,7 +977,7 @@ def finish_editing_tags(update: Update, context: CallbackContext) -> None:
 
     try:
         with open(music_path, 'rb') as music_file:
-            thumb = open(music_path, 'rb').read()
+            thumb = open(new_art_path, 'rb').read()
             context.bot.send_audio(
                 audio=music_file,
                 duration=user_data['music_duration'],
