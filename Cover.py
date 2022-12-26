@@ -1061,7 +1061,7 @@ def send_to_channel(update: Update, context: CallbackContext) -> None:
 
     update.message.reply_text(
         translate_key_to(lp.SEND_TO_CHANNEL_MESSAGE, lang),
-        reply_to_message_id=update.effective_message.message_id,
+        reply_markup=ReplyKeyboardRemove()
     )
 
 def main():
