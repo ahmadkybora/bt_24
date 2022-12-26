@@ -975,9 +975,10 @@ def finish_editing_tags(update: Update, context: CallbackContext) -> None:
         logger.error("Error on updating tags for file %s's file.", music_path, exc_info=True)
         return
 
+    if user_data['new_art_path']:
+        thumb = open(new_art_path, 'rb').read()
     try:
         with open(music_path, 'rb') as music_file:
-            thumb = open(new_art_path, 'rb').read()
             context.bot.send_audio(
                 audio=music_file,
                 duration=user_data['music_duration'],
