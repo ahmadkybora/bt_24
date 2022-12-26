@@ -13,7 +13,6 @@ import os
 import re
 import sys
 from datetime import datetime
-import ffmpeg
 
 #######################
 # Third-party modules #
@@ -979,7 +978,7 @@ def finish_editing_tags(update: Update, context: CallbackContext) -> None:
         thumb = open(new_art_path, 'rb').read()
     else:
         thumb = ""
-        
+
     try:
         with open(music_path, 'rb') as music_file:
             context.bot.send_audio(
@@ -1051,12 +1050,19 @@ def send_to_others(update: Update, context: CallbackContext) -> None:
     lang = user_data['language']
 
     update.message.reply_text(
-        translate_key_to(lp.SEND_TO_CHANNEL_MESSAGE, lang),
+        translate_key_to(lp.SEND_TO_OTHERS_MESSAGE, lang),
         reply_to_message_id=update.effective_message.message_id,
     )
 
 def send_to_channel(update: Update, context: CallbackContext) -> None:
-    pass
+    user_data = context.user_data
+    context.user_data['current_active_module'] = 'send_to_channels'
+    lang = user_data['language']
+
+    update.message.reply_text(
+        translate_key_to(lp.SEND_TO_CHANNEL_MESSAGE, lang),
+        reply_to_message_id=update.effective_message.message_id,
+    )
 
 def main():
     """
