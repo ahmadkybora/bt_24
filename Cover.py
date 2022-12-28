@@ -816,11 +816,8 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
                     context.bot.send_audio(
                         audio=music,
                         chat_id=update.message.text,
-                        caption=f"*From*: {convert_seconds_to_human_readable_form(beginning_sec)}\n"
-                                f"*To*: {convert_seconds_to_human_readable_form(ending_sec)}\n\n"
-                                f"🆔 {BOT_USERNAME}",
+                        caption=f"🆔 {BOT_USERNAME}",
                         reply_markup=start_over_button_keyboard,
-                        reply_to_message_id=user_data['music_message_id']
                     )
             except (TelegramError, BaseException) as error:
                 message.reply_text(
