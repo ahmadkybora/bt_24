@@ -809,7 +809,10 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
     back_button_keyboard = generate_back_button_keyboard(lang)
     start_over_button_keyboard = generate_start_over_keyboard(lang)
 
-    if current_active_module == 'tag_editor':
+    if current_active_module == 'send_to_channel':
+        logger.error("my message is %s", message)
+
+    elif current_active_module == 'tag_editor':
         if not current_tag:
             reply_message = translate_key_to(lp.ASK_WHICH_TAG, lang)
             message.reply_text(reply_message, reply_markup=tag_editor_keyboard)
@@ -1056,9 +1059,9 @@ def send_to_others(update: Update, context: CallbackContext) -> None:
 
 def send_to_channel(update: Update, context: CallbackContext) -> None:
     user_data = context.user_data
-    context.user_data['current_active_module'] = 'send_to_channels'
+    context.user_data['current_active_module'] = 'send_to_channel'
     lang = user_data['language']
-    logger.exception("my Languge: %s", lang)
+
     update.message.reply_text(translate_key_to(lp.SEND_TO_CHANNEL_MESSAGE, lang))
 
 def main():
