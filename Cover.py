@@ -1058,7 +1058,7 @@ def send_to_channel(update: Update, context: CallbackContext) -> None:
     user_data = context.user_data
     context.user_data['current_active_module'] = 'send_to_channels'
     lang = user_data['language']
-
+    logger.exception("my Languge: %s", lang)
     update.message.reply_text(translate_key_to(lp.SEND_TO_CHANNEL_MESSAGE, lang))
 
 def main():
