@@ -816,7 +816,6 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
                     context.bot.send_audio(
                         audio=music,
                         chat_id=update.message.text,
-                        duration=diff_sec,
                         caption=f"*From*: {convert_seconds_to_human_readable_form(beginning_sec)}\n"
                                 f"*To*: {convert_seconds_to_human_readable_form(ending_sec)}\n\n"
                                 f"🆔 {BOT_USERNAME}",
