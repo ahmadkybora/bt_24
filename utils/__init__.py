@@ -258,7 +258,7 @@ def download_file(user_id: int, file_to_download, file_type: str, context: Callb
         file_extension = mime_type.split("/")[-1]
 
     file_download_path = f"{user_download_dir}/{file_id.file_id}.{file_extension}"
-    logger.error(file_download_path)
+
     try:
         file_id.download(f"{user_download_dir}/{file_id.file_id}.{file_extension}")
     except ValueError as error:

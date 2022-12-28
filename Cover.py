@@ -810,6 +810,7 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
     start_over_button_keyboard = generate_start_over_keyboard(lang)
 
     if current_active_module == 'send_to_channel':
+        logger.error("my message is %s", music_path)
         if music_path:
             logger.error("my message is %s", message.text)
 
