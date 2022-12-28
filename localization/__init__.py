@@ -269,12 +269,12 @@ keys = {
         "fa": "🎙 تغییر بیت ریت",
     },
     BTN_SEND_TO_OTHERS: {
-        "en": "🎙 Send to others",
-        "fa": "🎙 ارسال به دیگران",
+        "en": "🔊 send to others",
+        "fa": "🔊 ارسال به دیگران",
     },
     BTN_SEND_TO_CHANELLS: {
-        "en": "🎙 Send to channel",
-        "fa": "🎙 ارسال به کانال",
+        "en": "🔊 send to channel",
+        "fa": "🔊 ارسال به کانال",
     },
     BTN_ARTIST: {
         "en": "🗣 Artist",
