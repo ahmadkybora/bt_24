@@ -1059,10 +1059,7 @@ def send_to_channel(update: Update, context: CallbackContext) -> None:
     context.user_data['current_active_module'] = 'send_to_channels'
     lang = user_data['language']
 
-    update.message.reply_text(
-        translate_key_to(lp.SEND_TO_CHANNEL_MESSAGE, lang),
-        reply_markup=ReplyKeyboardRemove()
-    )
+    update.message.reply_text(translate_key_to(lp.SEND_TO_CHANNEL_MESSAGE, lang))
 
 def main():
     """
