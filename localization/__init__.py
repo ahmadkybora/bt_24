@@ -357,12 +357,12 @@ keys = {
         "fa": "یا",
     },
     SEND_TO_CHANNEL: {
-        "en": "send to channel",
-        "fa": "ارسال به کانال",
+        "en": "🔊 send to channel",
+        "fa": "🔊 ارسال به کانال",
     },
     SEND_TO_OTHERS: {
-        "en": "send to others",
-        "fa": "ارسال به دیگران",
+        "en": "🔊 send to others",
+        "fa": "🔊 ارسال به دیگران",
     },
     SEND_TO_CHANNEL_MESSAGE: {
         "en": "",
