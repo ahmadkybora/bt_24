@@ -815,7 +815,7 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
                 with open(music_path, 'rb') as music:
                     context.bot.send_audio(
                         audio=music,
-                        chat_id=update.message.id,
+                        chat_id=update.message.chat_id,
                         caption=f"🆔 {BOT_USERNAME}",
                         reply_markup=start_over_button_keyboard,
                     )
