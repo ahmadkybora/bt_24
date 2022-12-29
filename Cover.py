@@ -812,13 +812,17 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
     if current_active_module == 'send_to_channel':
         if music_path:
             try:
-                with open(music_path, 'rb') as music:
-                    context.bot.send_audio(
-                        audio=music,
-                        chat_id=update.message.text,
-                        caption=f"🆔 {BOT_USERNAME}",
-                        reply_markup=start_over_button_keyboard,
-                    )
+                context.bot.send_message(
+                chat_id=update.message.text,
+                text="text",
+                )
+                # with open(music_path, 'rb') as music:
+                #     context.bot.send_audio(
+                #         audio=music,
+                #         chat_id=update.message.chat_id,
+                #         caption=f"🆔 {BOT_USERNAME}",
+                #         reply_markup=start_over_button_keyboard,
+                #     )
             except (TelegramError, BaseException) as error:
                 message.reply_text(
                     translate_key_to(lp.ERR_ON_UPLOADING, lang),
