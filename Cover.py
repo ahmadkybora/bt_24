@@ -73,6 +73,7 @@ logger.addHandler(stdout_handler)
 ############
 
 def command_start(update: Update, context: CallbackContext) -> None:
+    logger.error(update);
     user_id = update.effective_user.id
     username = update.effective_user.username
 
