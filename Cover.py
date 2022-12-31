@@ -700,7 +700,40 @@ def handle_convert_voice_message(update: Update, context: CallbackContext) -> No
     reset_user_data_context(context)
 
 def handle_download_message(update: Update, context: CallbackContext) -> None:
-    pass
+    message = update.message
+    url = message.text
+    user_id = update.effective_user.id
+    user_data = context.user_data
+    lang = user_data['language']
+
+    start_over_button_keyboard = generate_start_over_keyboard(lang)
+
+    try:
+        s = context.bot.get_file(update.message.document).download()
+        r = open("file", "wb").write(s)
+        # with open("custom/file.doc", 'wb') as f:
+        #     context.bot.get_file(update.message.document).download(out=f)
+
+        # r = open("file", "wb").write(response.content)
+        logging.error(r)
+    except:
+        pass
+    if "instagram.com" in url:
+        pass
+    else:
+        try:
+            context.bot.send_document(
+                document=url,
+                chat_id=update.message.chat_id,
+                caption=f"🆔 {BOT_USERNAME}",
+                reply_markup=start_over_button_keyboard,
+            )
+        except (TelegramError, BaseException) as error:
+            message.reply_text(
+                translate_key_to(lp.ERR_ON_DOWNLOAD_LINK_MESSAGE, lang),
+                reply_markup=start_over_button_keyboard
+            )
+            logger.exception("Telegram error: %s", error)
 
 def prepare_for_artist(update: Update, context: CallbackContext) -> None:
     if len(context.user_data) == 0:
