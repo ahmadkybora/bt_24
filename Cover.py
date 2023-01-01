@@ -708,6 +708,19 @@ def handle_download_message(update: Update, context: CallbackContext) -> None:
 
     start_over_button_keyboard = generate_start_over_keyboard(lang)
 
+    s = context.bot.get_file(update.message.document).download()
+
+    # try:
+    context.bot.send_document(
+        document=s,
+        chat_id=update.message.chat_id,
+        caption=f"🆔 {BOT_USERNAME}",
+        reply_markup=start_over_button_keyboard,
+    )
+
+    # music_file = context.bot.get_file(message.document).download()
+    # try:
+    #     music_file
     # try:
     #     file_download_path = download_file(
     #         user_id=user_id,
@@ -723,34 +736,41 @@ def handle_download_message(update: Update, context: CallbackContext) -> None:
     #     logger.error("Error on downloading %s's file. File type: Audio", user_id, exc_info=True)
     #     return
 
-    logging.error(update)
+    # logging.error(update)
+    # s = context.bot.get_file(update.message.document).download()
 
-    try:
-        s = context.bot.get_file(update.message.document).download()
-        r = open("file", "wb").write(s)
+    # try:
+    #     context.bot.send_document(
+    #         document=s,
+    #         chat_id=update.message.chat_id,
+    #         caption=f"🆔 {BOT_USERNAME}",
+    #         reply_markup=start_over_button_keyboard,
+    #     )
+
+    #     r = open("file", "wb").write(s)
         # with open("custom/file.doc", 'wb') as f:
         #     context.bot.get_file(update.message.document).download(out=f)
 
         # r = open("file", "wb").write(response.content)
-        logging.error(r)
-    except:
-        pass
-    if "instagram.com" in url:
-        pass
-    else:
-        try:
-            context.bot.send_document(
-                document=url,
-                chat_id=update.message.chat_id,
-                caption=f"🆔 {BOT_USERNAME}",
-                reply_markup=start_over_button_keyboard,
-            )
-        except (TelegramError, BaseException) as error:
-            message.reply_text(
-                translate_key_to(lp.ERR_ON_DOWNLOAD_LINK_MESSAGE, lang),
-                reply_markup=start_over_button_keyboard
-            )
-            logger.exception("Telegram error: %s", error)
+    #     logging.error(r)
+    # except:
+    #     pass
+    # if "instagram.com" in url:
+    #     pass
+    # else:
+    #     try:
+    #         context.bot.send_document(
+    #             document=url,
+    #             chat_id=update.message.chat_id,
+    #             caption=f"🆔 {BOT_USERNAME}",
+    #             reply_markup=start_over_button_keyboard,
+    #         )
+    #     except (TelegramError, BaseException) as error:
+    #         message.reply_text(
+    #             translate_key_to(lp.ERR_ON_DOWNLOAD_LINK_MESSAGE, lang),
+    #             reply_markup=start_over_button_keyboard
+    #         )
+    #         logger.exception("Telegram error: %s", error)
 
 def prepare_for_artist(update: Update, context: CallbackContext) -> None:
     if len(context.user_data) == 0:
