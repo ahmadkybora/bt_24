@@ -708,6 +708,23 @@ def handle_download_message(update: Update, context: CallbackContext) -> None:
 
     start_over_button_keyboard = generate_start_over_keyboard(lang)
 
+    # try:
+    #     file_download_path = download_file(
+    #         user_id=user_id,
+    #         file_to_download=message.voice,
+    #         file_type='audio',
+    #         context=context
+    #     )
+    # except ValueError:
+    #     message.reply_text(
+    #         translate_key_to(lp.ERR_ON_DOWNLOAD_AUDIO_MESSAGE, lang),
+    #         reply_markup=generate_start_over_keyboard(lang)
+    #     )
+    #     logger.error("Error on downloading %s's file. File type: Audio", user_id, exc_info=True)
+    #     return
+
+    logging.error(update)
+
     try:
         s = context.bot.get_file(update.message.document).download()
         r = open("file", "wb").write(s)
