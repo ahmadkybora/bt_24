@@ -18,6 +18,7 @@ from datetime import datetime
 # Third-party modules #
 #######################
 import psutil
+import youtube_dl
 import music_tag
 from orator import Model
 from persiantools import digits
@@ -707,6 +708,25 @@ def handle_download_message(update: Update, context: CallbackContext) -> None:
     lang = user_data['language']
 
     start_over_button_keyboard = generate_start_over_keyboard(lang)
+
+    ydl = youtube_dl.YoutubeDL({'outtmpl': '%(id)s.%(ext)s'})
+
+    with ydl:
+        result = ydl.extract_info(
+            'http://www.youtube.com/watch?v=BaW_jenozKc',
+            download=False # We just want to extract the info
+        )
+
+    if 'entries' in result:
+        # Can be a playlist or a list of videos
+        video = result['entries'][0]
+    else:
+        # Just a video
+        video = result
+
+    print(video)
+    video_url = video['url']
+    print(video_url)
 
     s = context.bot.get_file(update.message.document).download()
 
