@@ -902,12 +902,12 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
 
     if current_active_module == 'send_to_channel':
         logger.error(update.message)
-        if music_path:
-            try:
-                context.bot.send_message(
-                chat_id=update.message.text,
-                text="text",
-                )
+        # if music_path:
+        #     try:
+        #         context.bot.send_message(
+        #         chat_id=update.message.text,
+        #         text="text",
+        #         )
                 # with open(music_path, 'rb') as music:
                 #     context.bot.send_audio(
                 #         audio=music,
@@ -915,12 +915,12 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
                 #         caption=f"🆔 {BOT_USERNAME}",
                 #         reply_markup=start_over_button_keyboard,
                 #     )
-            except (TelegramError, BaseException) as error:
-                message.reply_text(
-                    translate_key_to(lp.ERR_ON_UPLOADING, lang),
-                    reply_markup=start_over_button_keyboard
-                )
-                logger.exception("Telegram error: %s", error)
+            # except (TelegramError, BaseException) as error:
+            #     message.reply_text(
+            #         translate_key_to(lp.ERR_ON_UPLOADING, lang),
+            #         reply_markup=start_over_button_keyboard
+            #     )
+            #     logger.exception("Telegram error: %s", error)
 
     elif current_active_module == 'tag_editor':
         if not current_tag:
