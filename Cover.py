@@ -901,7 +901,7 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
     start_over_button_keyboard = generate_start_over_keyboard(lang)
 
     if current_active_module == 'send_to_channel':
-        logger.error(update.message.text.index[0])
+        logger.error(message.text[0])
         # if music_path:
         #     try:
         #         context.bot.send_message(
