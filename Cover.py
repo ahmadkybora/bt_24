@@ -917,7 +917,7 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
                         )
                 except (TelegramError, BaseException) as error:
                     message.reply_text(
-                        translate_key_to(lp.ERR_ON_UPLOADING, lang),
+                        translate_key_to(lp.FIRST_ADMIN_ME, lang),
                         reply_markup=start_over_button_keyboard
                     )
                     logger.exception("Telegram error: %s", error)
