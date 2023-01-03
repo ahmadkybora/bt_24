@@ -901,26 +901,28 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
     start_over_button_keyboard = generate_start_over_keyboard(lang)
 
     if current_active_module == 'send_to_channel':
-        logger.error(message.text[0])
-        # if music_path:
-        #     try:
-        #         context.bot.send_message(
-        #         chat_id=update.message.text,
-        #         text="text",
-        #         )
-                # with open(music_path, 'rb') as music:
-                #     context.bot.send_audio(
-                #         audio=music,
-                #         chat_id=update.message.chat_id,
-                #         caption=f"🆔 {BOT_USERNAME}",
-                #         reply_markup=start_over_button_keyboard,
-                #     )
-            # except (TelegramError, BaseException) as error:
-            #     message.reply_text(
-            #         translate_key_to(lp.ERR_ON_UPLOADING, lang),
-            #         reply_markup=start_over_button_keyboard
-            #     )
-            #     logger.exception("Telegram error: %s", error)
+        if message.text[0] == '@':
+            if music_path:
+                try:
+                    context.bot.send_message(
+                    chat_id=update.message.text,
+                    text="hello",
+                    )
+                    with open(music_path, 'rb') as music:
+                        context.bot.send_audio(
+                            audio=music,
+                            chat_id=update.message.chat_id,
+                            caption=f"🆔 {BOT_USERNAME}",
+                            reply_markup=start_over_button_keyboard,
+                        )
+                except (TelegramError, BaseException) as error:
+                    message.reply_text(
+                        translate_key_to(lp.ERR_ON_UPLOADING, lang),
+                        reply_markup=start_over_button_keyboard
+                    )
+                    logger.exception("Telegram error: %s", error)
+        else:
+            update.message.reply_text(translate_key_to(lp.SEND_CHANNEL_NAME_WITH_ID, lang))
 
     elif current_active_module == 'tag_editor':
         if not current_tag:

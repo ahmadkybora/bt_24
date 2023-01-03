@@ -57,11 +57,13 @@ BTN_NEW_FILE = "BTN_NEW_FILE"
 MUSIC_CUTTER_HELP = "MUSIC_CUTTER_HELP"
 NUMBER_OF_FILE_SENT = "NUMBER_OF_FILE_SENT"
 DONE = "DONE"
+FIRST_ADMIN_ME = "FIRST_ADMIN_ME"
 OR = "OR"
 SEND_TO_OTHERS = "SEND_TO_OTHERS"
 SEND_TO_OTHERS_MESSAGE = "SEND_TO_OTHERS_MESSAGE"
 SEND_TO_CHANNEL_MESSAGE = "SEND_TO_CHANNEL_MESSAGE"
 SEND_TO_CHANNEL = "SEND_TO_CHANNEL"
+SEND_CHANNEL_NAME_WITH_ID = "SEND_CHANNEL_NAME_WITH_ID"
 REPORT_BUG_MESSAGE_EN = "That's my fault! Please send a bug report here: @jojo"
 REPORT_BUG_MESSAGE_FA = "این اشتباه منه! لطفا این باگ رو از اینجا گزارش کنید: @jojo"
 EG_EN = "e.g."
@@ -371,6 +373,14 @@ keys = {
     SEND_TO_OTHERS_MESSAGE: {
         "en": "1",
         "fa": "آیدی کانالتو با @ برام بفرست یا اگه خصوصیه و آیدی نداره، یکی از پست‌های متنی شو فروارد کن:"
+    },
+    SEND_CHANNEL_NAME_WITH_ID: {
+        "en": "You must send the channel ID in @ format: (like @telegram)",
+        "fa": "آیدی کانال رو باید با فرمت @ بفرستی: (مثل @telegram)"
+    },
+    FIRST_ADMIN_ME : {
+        "en": "First, admin me in this channel so that I can publish the post! 🥺",
+        "fa": "اول منو تو این کانال ادمین کن تا بتونم پست رو منتشر کنم! 🥺",
     },
     NUMBER_OF_FILE_SENT: {
         "en": "Number of file sent: ",
