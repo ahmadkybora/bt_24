@@ -19,6 +19,7 @@ ALBUM_ART_CHANGED = "ALBUM_ART_CHANGED"
 EXPECTED_NUMBER_MESSAGE = "EXPECTED_NUMBER_MESSAGE"
 CLICK_PREVIEW_MESSAGE = "CLICK_PREVIEW_MESSAGE"
 CLICK_DONE_MESSAGE = "CLICK_DONE_MESSAGE"
+CHANNEL_NOT_FOUND = "CHANNEL_NOT_FOUND"
 LANGUAGE_CHANGED = "LANGUAGE_CHANGED"
 MUSIC_LENGTH = "MUSIC_LENGTH"
 REPORT_BUG_MESSAGE = "REPORT_BUG_MESSAGE"
@@ -381,6 +382,10 @@ keys = {
     FIRST_ADMIN_ME : {
         "en": "First, admin me in this channel so that I can publish the post! 🥺",
         "fa": "اول منو تو این کانال ادمین کن تا بتونم پست رو منتشر کنم! 🥺",
+    },
+    CHANNEL_NOT_FOUND: {
+        "en": "There is no such channel at all! Please enter a valid ID:",
+        "fa": "همچین کانالی اصلا وجود نداره! لطفا یه آیدی درست وارد کن:"
     },
     NUMBER_OF_FILE_SENT: {
         "en": "Number of file sent: ",
