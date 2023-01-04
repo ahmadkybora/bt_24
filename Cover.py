@@ -916,8 +916,7 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
                             reply_markup=start_over_button_keyboard,
                         )
                 except (TelegramError, BaseException) as error:
-                    logger.exception(error)
-                    if error == "Chat not found":
+                    if logger.exception(error) == "Chat not found":
                         message.reply_text(
                             translate_key_to(lp.CHANNEL_NOT_FOUND, lang),
                             reply_markup=start_over_button_keyboard
