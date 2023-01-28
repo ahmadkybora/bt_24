@@ -931,6 +931,22 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
         else:
             update.message.reply_text(translate_key_to(lp.SEND_CHANNEL_NAME_WITH_ID, lang))
 
+    elif current_active_module == 'convert_video_to_gif_message':
+        video_path = user_data['video_path']
+        video_file = open(video_path, 'rb').read()
+        try:
+            with open(video_path, 'rb') as video_file:
+                message.reply_video_note(
+                    video_note=video_file,
+                    reply_to_message_id=update.effective_message.message_id,
+                    reply_markup=start_over_button_keyboard,
+                )
+        except (TelegramError, BaseException) as error:
+            message.reply_text(
+                translate_key_to(lp.ERR_ON_UPLOADING, lang),
+                reply_markup=start_over_button_keyboard
+            )
+            logger.exception("Telegram error: %s", error)
     elif current_active_module == 'tag_editor':
         if not current_tag:
             reply_message = translate_key_to(lp.ASK_WHICH_TAG, lang)
