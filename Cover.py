@@ -524,7 +524,7 @@ def handle_convert_video_message(update: Update, context: CallbackContext) -> No
     video_path = user_data['video_path']
     lang = user_data['language']
 
-    user_data['current_active_module'] = 'tag_editor'
+    user_data['current_active_module'] = 'convert_video_to_circle_message'
 
     tag_editor_context = user_data['tag_editor']
     tag_editor_context['current_tag'] = ''
@@ -1102,6 +1102,21 @@ def finish_editing_tags(update: Update, context: CallbackContext) -> None:
     if current_active_module == 'convert_video_to_gif_message':
         video_path = user_data['video_path']
         video_file = open(video_path, 'rb').read()
+        try:
+            with open(video_path, 'rb') as video_file:
+                message.reply_video_note(
+                    video_note=video_file,
+                    reply_to_message_id=update.effective_message.message_id,
+                    reply_markup=start_over_button_keyboard,
+                )
+        except (TelegramError, BaseException) as error:
+            message.reply_text(
+                translate_key_to(lp.ERR_ON_UPLOADING, lang),
+                reply_markup=start_over_button_keyboard
+            )
+            logger.exception("Telegram error: %s", error)
+
+    elif current_active_module == 'convert_video_to_circle_message':
         try:
             with open(video_path, 'rb') as video_file:
                 message.reply_video_note(
