@@ -1093,6 +1093,12 @@ def finish_editing_tags(update: Update, context: CallbackContext) -> None:
     lang = user_data['language']
     start_over_button_keyboard = generate_start_over_keyboard(lang)
     current_active_module = user_data['current_active_module']
+    music_path = user_data['music_path']
+    new_art_path = user_data['new_art_path']
+    music_tags = user_data['tag_editor']
+
+    start_over_button_keyboard = generate_start_over_keyboard(lang)
+
     if current_active_module == 'convert_video_to_gif_message':
         video_path = user_data['video_path']
         video_file = open(video_path, 'rb').read()
@@ -1109,26 +1115,20 @@ def finish_editing_tags(update: Update, context: CallbackContext) -> None:
                 reply_markup=start_over_button_keyboard
             )
             logger.exception("Telegram error: %s", error)
-
-    music_path = user_data['music_path']
-    new_art_path = user_data['new_art_path']
-    music_tags = user_data['tag_editor']
-
-    start_over_button_keyboard = generate_start_over_keyboard(lang)
-
-    try:
-        save_tags_to_file(
-            file=music_path,
-            tags=music_tags,
-            new_art_path=new_art_path
-        )
-    except (OSError, BaseException):
-        message.reply_text(
-            translate_key_to(lp.ERR_ON_UPDATING_TAGS, lang),
-            reply_markup=start_over_button_keyboard
-        )
-        logger.error("Error on updating tags for file %s's file.", music_path, exc_info=True)
-        return
+    else:
+        try:
+            save_tags_to_file(
+                file=music_path,
+                tags=music_tags,
+                new_art_path=new_art_path
+            )
+        except (OSError, BaseException):
+            message.reply_text(
+                translate_key_to(lp.ERR_ON_UPDATING_TAGS, lang),
+                reply_markup=start_over_button_keyboard
+            )
+            logger.error("Error on updating tags for file %s's file.", music_path, exc_info=True)
+            return
 
     if user_data['new_art_path']:
         thumb = open(new_art_path, 'rb').read()
