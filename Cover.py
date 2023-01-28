@@ -1091,6 +1091,7 @@ def finish_editing_tags(update: Update, context: CallbackContext) -> None:
         action=ChatAction.UPLOAD_AUDIO
     )
     lang = user_data['language']
+    start_over_button_keyboard = generate_start_over_keyboard(lang)
     current_active_module = user_data['current_active_module']
     if current_active_module == 'convert_video_to_gif_message':
         video_path = user_data['video_path']
