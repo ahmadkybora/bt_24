@@ -1090,6 +1090,7 @@ def finish_editing_tags(update: Update, context: CallbackContext) -> None:
         chat_id=update.message.chat_id,
         action=ChatAction.UPLOAD_AUDIO
     )
+    lang = user_data['language']
     current_active_module = user_data['current_active_module']
     if current_active_module == 'convert_video_to_gif_message':
         video_path = user_data['video_path']
@@ -1111,7 +1112,6 @@ def finish_editing_tags(update: Update, context: CallbackContext) -> None:
     music_path = user_data['music_path']
     new_art_path = user_data['new_art_path']
     music_tags = user_data['tag_editor']
-    lang = user_data['language']
 
     start_over_button_keyboard = generate_start_over_keyboard(lang)
 
