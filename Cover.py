@@ -1117,6 +1117,8 @@ def finish_editing_tags(update: Update, context: CallbackContext) -> None:
             logger.exception("Telegram error: %s", error)
 
     elif current_active_module == 'convert_video_to_circle_message':
+        video_path = user_data['video_path']
+        video_file = open(video_path, 'rb').read()
         try:
             with open(video_path, 'rb') as video_file:
                 message.reply_video_note(
