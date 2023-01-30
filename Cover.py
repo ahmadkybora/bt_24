@@ -524,7 +524,7 @@ def handle_convert_video_message(update: Update, context: CallbackContext) -> No
     video_path = user_data['video_path']
     lang = user_data['language']
 
-    user_data['current_active_module'] = 'tag_editor'
+    user_data['current_active_module'] = 'convert_video_to_circle'
 
     tag_editor_context = user_data['tag_editor']
     tag_editor_context['current_tag'] = ''
@@ -538,7 +538,7 @@ def handle_convert_video_message(update: Update, context: CallbackContext) -> No
                             f"{translate_key_to(lp.OR, lang).upper()} " \
                             f"{translate_key_to(lp.CLICK_DONE_MESSAGE, lang).lower()}"
             user_data['video_path'] = video_path
-            user_data['convert_video_to_circle'] = True
+            # user_data['convert_video_to_circle'] = True
             message.reply_text(reply_message, reply_markup=tag_editor_keyboard)
         except (ValueError, BaseException):
             message.reply_text(translate_key_to(lp.ERR_ON_DOWNLOAD_AUDIO_MESSAGE, lang))
