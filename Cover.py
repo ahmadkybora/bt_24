@@ -524,7 +524,7 @@ def handle_convert_video_message(update: Update, context: CallbackContext) -> No
     video_path = user_data['video_path']
     lang = user_data['language']
 
-    user_data['current_active_module'] = 'convert_video_to_circle_message'
+    user_data['current_active_module'] = 'tag_editor'
 
     tag_editor_context = user_data['tag_editor']
     tag_editor_context['current_tag'] = ''
@@ -1147,28 +1147,28 @@ def finish_editing_tags(update: Update, context: CallbackContext) -> None:
             logger.error("Error on updating tags for file %s's file.", music_path, exc_info=True)
             return
 
-    if user_data['new_art_path']:
-        thumb = open(new_art_path, 'rb').read()
-    else:
-        thumb = ""
+        if user_data['new_art_path']:
+            thumb = open(new_art_path, 'rb').read()
+        else:
+            thumb = ""
 
-    try:
-        with open(music_path, 'rb') as music_file:
-            context.bot.send_audio(
-                audio=music_file,
-                duration=user_data['music_duration'],
-                chat_id=update.message.chat_id,
-                caption=f"🆔 {BOT_USERNAME}",
-                thumb=thumb,
-                reply_markup=start_over_button_keyboard,
-                reply_to_message_id=user_data['music_message_id']
+        try:
+            with open(music_path, 'rb') as music_file:
+                context.bot.send_audio(
+                    audio=music_file,
+                    duration=user_data['music_duration'],
+                    chat_id=update.message.chat_id,
+                    caption=f"🆔 {BOT_USERNAME}",
+                    thumb=thumb,
+                    reply_markup=start_over_button_keyboard,
+                    reply_to_message_id=user_data['music_message_id']
+                )
+        except (TelegramError, BaseException) as error:
+            message.reply_text(
+                translate_key_to(lp.ERR_ON_UPLOADING, lang),
+                reply_markup=start_over_button_keyboard
             )
-    except (TelegramError, BaseException) as error:
-        message.reply_text(
-            translate_key_to(lp.ERR_ON_UPLOADING, lang),
-            reply_markup=start_over_button_keyboard
-        )
-        logger.exception("Telegram error: %s", error)
+            logger.exception("Telegram error: %s", error)
 
     reset_user_data_context(context)
 
