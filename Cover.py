@@ -713,7 +713,7 @@ def handle_download_message(update: Update, context: CallbackContext) -> None:
 
     with ydl:
         result = ydl.extract_info(
-            'http://www.youtube.com/watch?v=BaW_jenozKc',
+            message,
             download=False # We just want to extract the info
         )
 
@@ -725,14 +725,14 @@ def handle_download_message(update: Update, context: CallbackContext) -> None:
         video = result
 
     print(video)
-    video_url = video['url']
-    print(video_url)
+    # video_url = video['url']
+    # print(video_url)
 
-    s = context.bot.get_file(update.message.document).download()
+    # s = context.bot.get_file(update.message.document).download()
 
     # try:
     context.bot.send_document(
-        document=s,
+        document=video,
         chat_id=update.message.chat_id,
         caption=f"🆔 {BOT_USERNAME}",
         reply_markup=start_over_button_keyboard,
