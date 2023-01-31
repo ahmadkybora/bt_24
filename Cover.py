@@ -524,7 +524,7 @@ def handle_convert_video_message(update: Update, context: CallbackContext) -> No
     video_path = user_data['video_path']
     lang = user_data['language']
 
-    user_data['current_active_module'] = 'convert_video_to_circle'
+    user_data['current_active_module'] = 'convert_video_to_circle_message'
 
     tag_editor_context = user_data['tag_editor']
     tag_editor_context['current_tag'] = ''
