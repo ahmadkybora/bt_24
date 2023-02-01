@@ -714,7 +714,7 @@ def handle_download_message(update: Update, context: CallbackContext) -> None:
     with ydl:
         result = ydl.extract_info(
             message,
-            download=False # We just want to extract the info
+            download=True # We just want to extract the info
         )
 
     if 'entries' in result:
