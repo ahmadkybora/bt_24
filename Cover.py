@@ -74,7 +74,7 @@ logger.addHandler(stdout_handler)
 ############
 
 def command_start(update: Update, context: CallbackContext) -> None:
-    logger.error(update);
+    # logger.error(update)
     user_id = update.effective_user.id
     username = update.effective_user.username
 
@@ -724,7 +724,7 @@ def handle_download_message(update: Update, context: CallbackContext) -> None:
         # Just a video
         video = result
 
-    print(video)
+    # print(video)
     # video_url = video['url']
     # print(video_url)
 
