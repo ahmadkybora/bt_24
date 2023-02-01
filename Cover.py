@@ -724,6 +724,24 @@ def handle_download_message(update: Update, context: CallbackContext) -> None:
         # Just a video
         video = result
 
+    def my_hook(d):
+        if d['status'] == 'finished':
+            print('Done downloading, now converting ...')
+
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+        'logger': logger.info(message),
+        'progress_hooks': [my_hook],
+    }
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        ydl.download(['https://www.youtube.com/watch?v=BaW_jenozKc'])
+
+
     # print(video)
     # video_url = video['url']
     # print(video_url)
