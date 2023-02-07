@@ -83,10 +83,13 @@ keys = {
               "📷 convert video to gif \n"
               "🔊 Convert voice to song \n"
               "📝 change the caption and remove ads \n"
-              "⏪ Send post and file without name to channel \n"
-              "🎵 find songs by voice \n"
-              "📥 Download the song through the download link \n"
-              "📥 Download video via Instagram link \n\n\n"
+              "⏪ Send post and file without name to channel \n\n"
+
+               "The following items will be added in the future"
+               "🎵 find song from video \n"
+               "📥 Download the song through the download link \n"
+               "📥 Download videos from all links like YouTube, Instagram, etc. \n"
+               "📥 Download video via Instagram link \n\n\n"
 
 
               "⚠️ To start, please send a song/video/link: (You can download or upload directly!)",
@@ -101,9 +104,12 @@ keys = {
               "📷 تبدیل ویدیو به گیف \n"
               "🔊 تبدیل وویس به آهنگ \n"
               "📝 تغییر کپشن و حذف تبلیغات \n"
-              "⏪ ارسال پست و فایل بدون نام به کانال \n"
-              "🎵 پیدا کردن آهنگ از روی وویس \n"
+              "⏪ ارسال پست و فایل بدون نام به کانال \n\n"
+
+              "موارد زیر در آینده اضافه میشوند"
+              "🎵 پیدا کردن آهنگ از روی ویدیو \n"
               "📥 دانلود آهنگ از طریق لینک دانلود \n"
+              "📥 دانلود ویدیو از تمام لینکها مثل یوتیوب اینستاگرام و غیره \n"
               "📥 دانلود ویدیو از طریق لینک اینستاگرام \n\n\n"
 
 
@@ -118,14 +124,11 @@ keys = {
         "fa": "ساده س! یه فایل صوتی، یه MP3 یا یه موزیک برام بفرست. منتظرم... 😁",
     },
     ABOUT_MESSAGE: {
-        "en": "This bot is created by @amirhoseinsalimii in Python language.\n"
-              "The source code of this project is available on"
-              " [GitHub](https://github.com/amirhoseinsalimi/music-tool-bot).\n\n"
+        "en": "This bot is created by @jojo.\n"
               "If you have any question or feedback feel free to message me on Telegram."
               " Or if you are a developer and have an idea to make this bot better, I appreciate your"
               " PRs.\n\n",
-        "fa": "این ربات توسط @amirhoseinsalimii به زبان پایتون نوشته شده است."
-              " سورس این برنامه از طریق [گیت هاب](https://github.com/amirhoseinsalimi/music-tool-bot)"
+        "fa": "این ربات توسط @jojo نوشته شده است."
               " در دسترس است.\n\n"
               "اگر سوال یا بازخوردی دارید میتونید در تلگرام بهم پیام بدید. یا اگر برنامه نویس هستید و ایده "
               "ای برای بهتر کردن این ربات دارید، از PR هاتون استقبال میکنم."
