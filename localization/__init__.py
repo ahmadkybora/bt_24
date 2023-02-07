@@ -74,8 +74,6 @@ keys = {
     START_MESSAGE: {
         "en": "Hello there! 👋\n"
               "I'm music jojo; we can do the following together 👇\n\n\n"
-
-              
               "💿 display and change the complete song profile \n"
               "✂️ Sampling and cutting the song and converting it to voice \n"
               "🏞 delete and change the song cover \n"
@@ -84,19 +82,14 @@ keys = {
               "🔊 Convert voice to song \n"
               "📝 change the caption and remove ads \n"
               "⏪ Send post and file without name to channel \n\n"
-
-               "The following items will be added in the future"
-               "🎵 find song from video \n"
-               "📥 Download the song through the download link \n"
-               "📥 Download videos from all links like YouTube, Instagram, etc. \n"
-               "📥 Download video via Instagram link \n\n\n"
-
-
+              "The following will be added in the future \n\n\n"
+              "🎵 find song from video \n"
+              "📥 Download the song through the download link \n"
+              "📥 Download videos from all links like YouTube, Instagram, etc. \n"
+              "📥 Download video via Instagram link \n\n\n"
               "⚠️ To start, please send a song/video/link: (You can download or upload directly!)",
         "fa": "سلام! 👋\n"
               "موزیک جوجو هستم؛ می‌تونیم کارای زیر رو باهم انجام بدیم 👇\n\n\n"
-
-
               "💿 نمایش و تغییر مشخصات کامل آهنگ \n"
               "✂️ نمونه‌گیری و برش آهنگ و تبدیل به وویس \n"
               "🏞 حذف و تغییر کاور آهنگ \n"
@@ -105,14 +98,11 @@ keys = {
               "🔊 تبدیل وویس به آهنگ \n"
               "📝 تغییر کپشن و حذف تبلیغات \n"
               "⏪ ارسال پست و فایل بدون نام به کانال \n\n"
-
-              "موارد زیر در آینده اضافه میشوند"
+              "موارد زیر در آینده اضافه میشوند \n\n\n"
               "🎵 پیدا کردن آهنگ از روی ویدیو \n"
               "📥 دانلود آهنگ از طریق لینک دانلود \n"
               "📥 دانلود ویدیو از تمام لینکها مثل یوتیوب اینستاگرام و غیره \n"
               "📥 دانلود ویدیو از طریق لینک اینستاگرام \n\n\n"
-
-
               "⚠️ برای شروع لطفا یه آهنگی/فیلمی/لینکی چیزی بفرست: (می‌تونی فروارد کنی یا مستقیم آپلود کنی!)"
     },
     START_OVER_MESSAGE: {
