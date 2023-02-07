@@ -18,7 +18,7 @@ from datetime import datetime
 # Third-party modules #
 #######################
 import psutil
-import youtube_dl
+from yt_dlp import YoutubeDL
 import music_tag
 from orator import Model
 from persiantools import digits
@@ -701,45 +701,53 @@ def handle_convert_voice_message(update: Update, context: CallbackContext) -> No
     reset_user_data_context(context)
 
 def handle_download_message(update: Update, context: CallbackContext) -> None:
-    message = update.message
-    url = message.text
-    user_id = update.effective_user.id
-    user_data = context.user_data
-    lang = user_data['language']
+    lang = context.user_data['language']
 
-    start_over_button_keyboard = generate_start_over_keyboard(lang)
+    back_button_keyboard = generate_back_button_keyboard(lang)
 
-    ydl = youtube_dl.YoutubeDL({'outtmpl': '%(id)s.%(ext)s'})
+    update.message.reply_text(
+        translate_key_to(lp.ERR_NOT_IMPLEMENTED, lang),
+        reply_markup=back_button_keyboard
+    )
+    # message = update.message
+    # url = message.text
+    # user_id = update.effective_user.id
+    # user_data = context.user_data
+    # lang = user_data['language']
 
-    with ydl:
-        result = ydl.extract_info(
-            message,
-            download=True # We just want to extract the info
-        )
+    # start_over_button_keyboard = generate_start_over_keyboard(lang)
 
-    if 'entries' in result:
-        # Can be a playlist or a list of videos
-        video = result['entries'][0]
-    else:
-        # Just a video
-        video = result
+    # ydl = youtube_dl.YoutubeDL({'outtmpl': '%(id)s.%(ext)s'})
 
-    def my_hook(d):
-        if d['status'] == 'finished':
-            print('Done downloading, now converting ...')
+    # with ydl:
+    #     result = ydl.extract_info(
+    #         message,
+    #         download=True # We just want to extract the info
+    #     )
 
-    ydl_opts = {
-        'format': 'bestaudio/best',
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',
-            'preferredquality': '192',
-        }],
-        'logger': logger.info(message),
-        'progress_hooks': [my_hook],
-    }
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        ydl.download(['https://www.youtube.com/watch?v=BaW_jenozKc'])
+    # if 'entries' in result:
+    #     # Can be a playlist or a list of videos
+    #     video = result['entries'][0]
+    # else:
+    #     # Just a video
+    #     video = result
+
+    # def my_hook(d):
+    #     if d['status'] == 'finished':
+    #         print('Done downloading, now converting ...')
+
+    # ydl_opts = {
+    #     'format': 'bestaudio/best',
+    #     'postprocessors': [{
+    #         'key': 'FFmpegExtractAudio',
+    #         'preferredcodec': 'mp3',
+    #         'preferredquality': '192',
+    #     }],
+    #     'logger': logger.info(message),
+    #     'progress_hooks': [my_hook],
+    # }
+    # with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+    #     ydl.download(['https://www.youtube.com/watch?v=BaW_jenozKc'])
 
 
     # print(video)
@@ -749,12 +757,12 @@ def handle_download_message(update: Update, context: CallbackContext) -> None:
     # s = context.bot.get_file(update.message.document).download()
 
     # try:
-    context.bot.send_document(
-        document=video,
-        chat_id=update.message.chat_id,
-        caption=f"🆔 {BOT_USERNAME}",
-        reply_markup=start_over_button_keyboard,
-    )
+    # context.bot.send_document(
+    #     document=video,
+    #     chat_id=update.message.chat_id,
+    #     caption=f"🆔 {BOT_USERNAME}",
+    #     reply_markup=start_over_button_keyboard,
+    # )
 
     # music_file = context.bot.get_file(message.document).download()
     # try:
