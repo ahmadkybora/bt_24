@@ -1103,8 +1103,8 @@ def show_language_keyboard(update: Update, _context: CallbackContext) -> None:
     # each = ['🇬🇧 English', '🇮🇷 فارسی']
     # language_button_keyboard = InlineKeyboardButton(each, callback_data = each)
     language_button_keyboard = [
-        [InlineKeyboardButton("🇬🇧", callback_data="English")],
-        [InlineKeyboardButton("🇮🇷", callback_data="فارسی")],
+        [InlineKeyboardButton('🇬🇧 English', callback_data='🇬🇧 English')],
+        [InlineKeyboardButton('🇮🇷 فارسی', callback_data='🇮🇷 فارسی')],
     ]
 
     update.message.reply_text(
