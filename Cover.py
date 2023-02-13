@@ -18,7 +18,6 @@ from datetime import datetime
 # Third-party modules #
 #######################
 import psutil
-from yt_dlp import YoutubeDL
 import music_tag
 from orator import Model
 from persiantools import digits
@@ -709,114 +708,6 @@ def handle_download_message(update: Update, context: CallbackContext) -> None:
         translate_key_to(lp.ERR_NOT_IMPLEMENTED, lang),
         reply_markup=back_button_keyboard
     )
-    # message = update.message
-    # url = message.text
-    # user_id = update.effective_user.id
-    # user_data = context.user_data
-    # lang = user_data['language']
-
-    # start_over_button_keyboard = generate_start_over_keyboard(lang)
-
-    # ydl = youtube_dl.YoutubeDL({'outtmpl': '%(id)s.%(ext)s'})
-
-    # with ydl:
-    #     result = ydl.extract_info(
-    #         message,
-    #         download=True # We just want to extract the info
-    #     )
-
-    # if 'entries' in result:
-    #     # Can be a playlist or a list of videos
-    #     video = result['entries'][0]
-    # else:
-    #     # Just a video
-    #     video = result
-
-    # def my_hook(d):
-    #     if d['status'] == 'finished':
-    #         print('Done downloading, now converting ...')
-
-    # ydl_opts = {
-    #     'format': 'bestaudio/best',
-    #     'postprocessors': [{
-    #         'key': 'FFmpegExtractAudio',
-    #         'preferredcodec': 'mp3',
-    #         'preferredquality': '192',
-    #     }],
-    #     'logger': logger.info(message),
-    #     'progress_hooks': [my_hook],
-    # }
-    # with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-    #     ydl.download(['https://www.youtube.com/watch?v=BaW_jenozKc'])
-
-
-    # print(video)
-    # video_url = video['url']
-    # print(video_url)
-
-    # s = context.bot.get_file(update.message.document).download()
-
-    # try:
-    # context.bot.send_document(
-    #     document=video,
-    #     chat_id=update.message.chat_id,
-    #     caption=f"🆔 {BOT_USERNAME}",
-    #     reply_markup=start_over_button_keyboard,
-    # )
-
-    # music_file = context.bot.get_file(message.document).download()
-    # try:
-    #     music_file
-    # try:
-    #     file_download_path = download_file(
-    #         user_id=user_id,
-    #         file_to_download=message.voice,
-    #         file_type='audio',
-    #         context=context
-    #     )
-    # except ValueError:
-    #     message.reply_text(
-    #         translate_key_to(lp.ERR_ON_DOWNLOAD_AUDIO_MESSAGE, lang),
-    #         reply_markup=generate_start_over_keyboard(lang)
-    #     )
-    #     logger.error("Error on downloading %s's file. File type: Audio", user_id, exc_info=True)
-    #     return
-
-    # logging.error(update)
-    # s = context.bot.get_file(update.message.document).download()
-
-    # try:
-    #     context.bot.send_document(
-    #         document=s,
-    #         chat_id=update.message.chat_id,
-    #         caption=f"🆔 {BOT_USERNAME}",
-    #         reply_markup=start_over_button_keyboard,
-    #     )
-
-    #     r = open("file", "wb").write(s)
-        # with open("custom/file.doc", 'wb') as f:
-        #     context.bot.get_file(update.message.document).download(out=f)
-
-        # r = open("file", "wb").write(response.content)
-    #     logging.error(r)
-    # except:
-    #     pass
-    # if "instagram.com" in url:
-    #     pass
-    # else:
-    #     try:
-    #         context.bot.send_document(
-    #             document=url,
-    #             chat_id=update.message.chat_id,
-    #             caption=f"🆔 {BOT_USERNAME}",
-    #             reply_markup=start_over_button_keyboard,
-    #         )
-    #     except (TelegramError, BaseException) as error:
-    #         message.reply_text(
-    #             translate_key_to(lp.ERR_ON_DOWNLOAD_LINK_MESSAGE, lang),
-    #             reply_markup=start_over_button_keyboard
-    #         )
-    #         logger.exception("Telegram error: %s", error)
 
 def prepare_for_artist(update: Update, context: CallbackContext) -> None:
     if len(context.user_data) == 0:
@@ -1243,23 +1134,6 @@ def ignore_file(update: Update, context: CallbackContext) -> None:
         reply_markup=ReplyKeyboardRemove()
     )
 
-def send_to_others(update: Update, context: CallbackContext) -> None:
-    user_data = context.user_data
-    context.user_data['current_active_module'] = 'send_to_others'
-    lang = user_data['language']
-
-    update.message.reply_text(
-        translate_key_to(lp.SEND_TO_OTHERS_MESSAGE, lang),
-        reply_to_message_id=update.effective_message.message_id,
-    )
-
-def send_to_channel(update: Update, context: CallbackContext) -> None:
-    user_data = context.user_data
-    context.user_data['current_active_module'] = 'send_to_channel'
-    lang = user_data['language']
-
-    update.message.reply_text(translate_key_to(lp.SEND_TO_CHANNEL_MESSAGE, lang))
-
 def main():
     """
     Start Bot
@@ -1388,18 +1262,6 @@ def main():
     add_handler(MessageHandler(
         (Filters.regex('^(🔊 convert voice to audio)$') | Filters.regex('^(🔊 تبدیل صدا به موزیک)$')),
         handle_convert_voice_message)
-    )
-
-    #######################
-    # Send to #
-    #######################
-    add_handler(MessageHandler(
-        (Filters.regex('^(🔊 send to others)$') | Filters.regex('^(🔊 ارسال به دیگران)$')),
-        send_to_others)
-    )
-    add_handler(MessageHandler(
-        (Filters.regex('^(🔊 send to channel)$') | Filters.regex('^(🔊 ارسال به کانال)$')),
-        send_to_channel)
     )
 
     #####################
