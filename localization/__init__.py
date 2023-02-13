@@ -85,7 +85,7 @@ keys = {
               "📥 Download the song through the download link \n"
               "📥 Download videos from all links like YouTube, Instagram, etc. \n"
               "📥 Download video via Instagram link \n\n\n"
-              "⚠️ To start, please send a song/video/link: (You can download or upload directly!)",
+              "⚠️ To start, please send a song/video: (You can download or upload directly!)",
         "fa": "سلام! 👋\n"
               "موزیک جوجو هستم؛ می‌تونیم کارای زیر رو باهم انجام بدیم 👇\n\n\n"
               "💿 نمایش و تغییر مشخصات کامل آهنگ \n"
@@ -101,7 +101,7 @@ keys = {
               "📥 دانلود آهنگ از طریق لینک دانلود \n"
               "📥 دانلود ویدیو از تمام لینکها مثل یوتیوب اینستاگرام و غیره \n"
               "📥 دانلود ویدیو از طریق لینک اینستاگرام \n\n\n"
-              "⚠️ برای شروع لطفا یه آهنگی/فیلمی/لینکی چیزی بفرست: (می‌تونی فروارد کنی یا مستقیم آپلود کنی!)"
+              "⚠️ برای شروع لطفا یه آهنگی/فیلمی بفرست: (می‌تونی فروارد کنی یا مستقیم آپلود کنی!)"
     },
     START_OVER_MESSAGE: {
         "en": "Send me a music and see how awesome I am!",
