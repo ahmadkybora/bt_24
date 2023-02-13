@@ -329,10 +329,6 @@ def generate_module_selector_keyboard(language: str) -> ReplyKeyboardMarkup:
                 [
                     translate_key_to('BTN_MUSIC_CUTTER', language),
                     translate_key_to('BTN_BITRATE_CHANGER', language)
-                ],
-                [
-                    translate_key_to('BTN_SEND_TO_OTHERS', language),
-                    translate_key_to('BTN_SEND_TO_CHANELLS', language)
                 ]
             ],
             resize_keyboard=True,

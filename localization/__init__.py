@@ -43,8 +43,6 @@ BTN_MUSIC_TO_VOICE_CONVERTER = "BTN_MUSIC_TO_VOICE_CONVERTER"
 BTN_CONVERT_VOICE_TO_AUDIO = "BTN_CONVERT_VOICE_TO_AUDIO"
 BTN_MUSIC_CUTTER = "BTN_MUSIC_CUTTER"
 BTN_BITRATE_CHANGER = "BTN_BITRATE_CHANGER"
-BTN_SEND_TO_OTHERS = "BTN_SEND_TO_OTHERS"
-BTN_SEND_TO_CHANELLS = "BTN_SEND_TO_CHANELLS"
 BTN_ARTIST = "BTN_ARTIST"
 BTN_TITLE = "BTN_TITLE"
 BTN_ALBUM = "BTN_ALBUM"
@@ -97,8 +95,8 @@ keys = {
               "📷 تبدیل ویدیو به گیف \n"
               "🔊 تبدیل وویس به آهنگ \n"
               "📝 تغییر کپشن و حذف تبلیغات \n"
-              "⏪ ارسال پست و فایل بدون نام به کانال \n\n"
               "موارد زیر در آینده اضافه میشوند \n\n\n"
+              "⏪ ارسال پست و فایل بدون نام به کانال \n"
               "🎵 پیدا کردن آهنگ از روی ویدیو \n"
               "📥 دانلود آهنگ از طریق لینک دانلود \n"
               "📥 دانلود ویدیو از تمام لینکها مثل یوتیوب اینستاگرام و غیره \n"
@@ -263,14 +261,6 @@ keys = {
     BTN_BITRATE_CHANGER: {
         "en": "🎙 Bitrate Changer",
         "fa": "🎙 تغییر بیت ریت",
-    },
-    BTN_SEND_TO_OTHERS: {
-        "en": "🔊 send to others",
-        "fa": "🔊 ارسال به دیگران",
-    },
-    BTN_SEND_TO_CHANELLS: {
-        "en": "🔊 send to channel",
-        "fa": "🔊 ارسال به کانال",
     },
     BTN_ARTIST: {
         "en": "🗣 Artist",
