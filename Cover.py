@@ -22,7 +22,7 @@ import music_tag
 from orator import Model
 from persiantools import digits
 from telegram.error import TelegramError
-from telegram import Update, ReplyKeyboardMarkup, ChatAction, ParseMode, ReplyKeyboardRemove, InlineKeyboardMarkup
+from telegram import InlineKeyboardButton, Update, ReplyKeyboardMarkup, ChatAction, ParseMode, ReplyKeyboardRemove
 from telegram.ext import Updater, CommandHandler, CallbackContext, Filters, MessageHandler, \
     Defaults, PicklePersistence
 
@@ -1092,13 +1092,16 @@ def command_about(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(translate_key_to(lp.ABOUT_MESSAGE, context.user_data['language']))
 
 def show_language_keyboard(update: Update, _context: CallbackContext) -> None:
-    language_button_keyboard = InlineKeyboardMarkup(
-        [
-            ['🇬🇧 English', '🇮🇷 فارسی'],
-        ],
-        resize_keyboard=True,
-        one_time_keyboard=True,
-    )
+    # language_button_keyboard = ReplyKeyboardMarkup(
+    #     [
+    #         ['🇬🇧 English', '🇮🇷 فارسی'],
+    #     ],
+    #     resize_keyboard=True,
+    #     one_time_keyboard=True,
+    # )
+
+    each = ['🇬🇧 English', '🇮🇷 فارسی']
+    language_button_keyboard = InlineKeyboardButton(each, callback_data = each)
 
     update.message.reply_text(
         "Please choose a language:\n\n"
