@@ -1114,6 +1114,11 @@ def show_language_keyboard(update: Update, _context: CallbackContext) -> None:
     )
 
 def set_language(update: Update, context: CallbackContext) -> None:
+    print(update.callback_query.data)
+    context.bot.send_message(chat_id=update.effective_chat.id, 
+        text='[query_yes] callback data: ' + update.callback_query.data)
+
+def set_language(update: Update, context: CallbackContext) -> None:
     lang = update.callback_query.data.lower()
     # query.answer(f'selected: {query.data}')
     # logger.error(query)
@@ -1163,6 +1168,8 @@ def main():
     add_handler(CommandHandler('about', command_about))
     add_handler(CommandHandler('done', finish_editing_tags))
     add_handler(CommandHandler('preview', display_preview))
+
+    add_handler(CallbackQueryHandler(set_language, pattern='^(🇬🇧 English)$'))
 
     ##########################
     # Admin Command Handlers #
