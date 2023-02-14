@@ -22,9 +22,9 @@ import music_tag
 from orator import Model
 from persiantools import digits
 from telegram.error import TelegramError
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ReplyKeyboardMarkup, ChatAction, CallbackQueryHandler, ParseMode, ReplyKeyboardRemove
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ReplyKeyboardMarkup, ChatAction, ParseMode, ReplyKeyboardRemove
 from telegram.ext import Updater, CommandHandler, CallbackContext, Filters, MessageHandler, \
-    Defaults, PicklePersistence
+    Defaults, PicklePersistence, CallbackQueryHandler
 
 
 ##############
