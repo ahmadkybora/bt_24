@@ -1118,28 +1118,28 @@ def set_language(update: Update, context: CallbackContext) -> None:
     context.bot.send_message(chat_id=update.effective_chat.id, 
         text='[query_yes] callback data: ' + update.callback_query.data)
 
-def set_language(update: Update, context: CallbackContext) -> None:
-    lang = update.callback_query.data.lower()
-    # query.answer(f'selected: {query.data}')
-    # logger.error(query)
-    # lang = update.message.text.lower()
-    user_data = context.user_data
-    user_id = update.effective_user.id
+# def set_language(update: Update, context: CallbackContext) -> None:
+#     lang = update.callback_query.data.lower()
+#     # query.answer(f'selected: {query.data}')
+#     # logger.error(query)
+#     # lang = update.message.text.lower()
+#     user_data = context.user_data
+#     user_id = update.effective_user.id
 
-    if "english" in lang:
-        user_data['language'] = 'en'
-    elif "فارسی" in lang:
-        user_data['language'] = 'fa'
+#     if "english" in lang:
+#         user_data['language'] = 'en'
+#     elif "فارسی" in lang:
+#         user_data['language'] = 'fa'
 
-    update.message.reply_text(translate_key_to(lp.LANGUAGE_CHANGED, user_data['language']))
-    update.message.reply_text(
-        translate_key_to(lp.START_OVER_MESSAGE, user_data['language']),
-        reply_markup=ReplyKeyboardRemove()
-    )
+#     update.message.reply_text(translate_key_to(lp.LANGUAGE_CHANGED, user_data['language']))
+#     update.message.reply_text(
+#         translate_key_to(lp.START_OVER_MESSAGE, user_data['language']),
+#         reply_markup=ReplyKeyboardRemove()
+#     )
 
-    user = User.where('user_id', '=', user_id).first()
-    user.language = user_data['language']
-    user.push()
+#     user = User.where('user_id', '=', user_id).first()
+#     user.language = user_data['language']
+#     user.push()
 
 def ignore_file(update: Update, context: CallbackContext) -> None:
     reset_user_data_context(context)
