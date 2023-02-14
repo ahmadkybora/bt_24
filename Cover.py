@@ -1103,8 +1103,8 @@ def show_language_keyboard(update: Update, _context: CallbackContext) -> None:
     # each = ['🇬🇧 English', '🇮🇷 فارسی']
     # language_button_keyboard = InlineKeyboardButton(each, callback_data = each)
     language_button_keyboard = [
-        [InlineKeyboardButton('🇬🇧 English', callback_data='🇬🇧 English')],
-        [InlineKeyboardButton('🇮🇷 فارسی', callback_data='🇮🇷 فارسی')],
+        [InlineKeyboardButton('🇬🇧 English', callback_data='^(🇬🇧 English)$')],
+        [InlineKeyboardButton('🇮🇷 فارسی', callback_data='^(🇮🇷 فارسی)$')],
     ]
 
     update.message.reply_text(
@@ -1143,6 +1143,13 @@ def ignore_file(update: Update, context: CallbackContext) -> None:
         reply_markup=ReplyKeyboardRemove()
     )
 
+def keyboard_callback(update, context):
+    query = update.callback_query
+    #print('query:', query)
+    
+    print('query.data:', query.data)
+    query.answer(f'selected: {query.data}')
+
 def main():
     """
     Start Bot
@@ -1161,7 +1168,7 @@ def main():
     add_handler(CommandHandler('language', show_language_keyboard))
     add_handler(CommandHandler('help', command_help))
     add_handler(CommandHandler('about', command_about))
-
+    add_handler(CallbackQueryHandler(keyboard_callback))
     add_handler(CommandHandler('done', finish_editing_tags))
     add_handler(CommandHandler('preview', display_preview))
 
