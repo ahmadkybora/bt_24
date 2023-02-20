@@ -1116,6 +1116,7 @@ def show_language_keyboard(update: Update, _context: CallbackContext) -> None:
 def set_language(update: Update, context: CallbackContext) -> None:
     # data = update.callback_query.data
     data = update.callback_query.data.lower()
+    print(data)
     user_data = context.user_data
     user_id = update.effective_user.id
 
