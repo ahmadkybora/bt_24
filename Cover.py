@@ -1126,8 +1126,19 @@ def set_language(update: Update, context: CallbackContext) -> None:
         user_data['language'] = 'fa'
     # id = update.callback_query.id
 
-    print(user_data['language'])
-    context.bot.answerCallbackQuery(callback_query_id=update.callback_query.id, text="Turning off light OFF!")
+    language_button_keyboard = [
+        [InlineKeyboardButton('🇬🇧 English1', callback_data='^(🇬🇧 English)$')],
+        [InlineKeyboardButton('🇮🇷 فارسی2', callback_data='^(🇮🇷 فارسی)$')],
+    ]
+
+    update.message.reply_text(
+        "Please choose a language:\n\n"
+        "لطفا زبان را انتخاب کنید:",
+        reply_markup=InlineKeyboardMarkup(language_button_keyboard),
+    )
+
+    # print(user_data['language'])
+    # context.bot.answerCallbackQuery(callback_query_id=update.callback_query.id, text="Turning off light OFF!")
     # update.callback_query.answer('this', show_alert=True)
     # update.message.reply_text(translate_key_to(lp.LANGUAGE_CHANGED, user_data['language']))
     # update.message.reply_text(
