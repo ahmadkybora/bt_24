@@ -1103,7 +1103,7 @@ def show_language_keyboard(update: Update, _context: CallbackContext) -> None:
     # each = ['🇬🇧 English', '🇮🇷 فارسی']
     # language_button_keyboard = InlineKeyboardButton(each, callback_data = each)
     language_button_keyboard = [
-        [InlineKeyboardButton('^(🇬🇧 English)$', callback_data='^(🇬🇧 English)$')],
+        [InlineKeyboardButton('🇬🇧 English', callback_data='^(🇬🇧 English)$')],
         [InlineKeyboardButton('🇮🇷 فارسی', callback_data='^(🇮🇷 فارسی)$')],
     ]
 
@@ -1114,9 +1114,36 @@ def show_language_keyboard(update: Update, _context: CallbackContext) -> None:
     )
 
 def set_language(update: Update, context: CallbackContext) -> None:
-    print(update.callback_query.data)
-    context.bot.send_message(chat_id=update.effective_chat.id, 
-        text='[query_yes] callback data: ' + update.callback_query.data)
+    # data = update.callback_query.data
+    data = update.callback_query.data.lower()
+    user_data = context.user_data
+    user_id = update.effective_user.id
+
+    if '^(🇬🇧 English)$' in data:
+        user_data['language'] = 'en'
+    elif '^(🇮🇷 فارسی)$' in data:
+        user_data['language'] = 'fa'
+    # id = update.callback_query.id
+
+    update.message.reply_text(translate_key_to(lp.LANGUAGE_CHANGED, user_data['language']))
+    update.message.reply_text(
+        translate_key_to(lp.START_OVER_MESSAGE, user_data['language']),
+        reply_markup=ReplyKeyboardRemove()
+    )
+
+    user = User.where('user_id', '=', user_id).first()
+    user.language = user_data['language']
+    user.push()
+
+    # if data == '^(🇬🇧 English)$':
+    #     update.callback_query.answer('this', show_alert=True)
+    #     context.bot.answer_callback_query(id, '')
+    # else:
+    #     print('Invalid')
+        # randomMsg(update, context)
+    # print(update.callback_query.data)
+    # context.bot.send_message(chat_id=update.effective_chat.id, 
+    #     text='[query_yes] callback data: ' + update.callback_query.data)
 
 # def set_language(update: Update, context: CallbackContext) -> None:
 #     lang = update.callback_query.data.lower()
