@@ -1127,7 +1127,8 @@ def set_language(update: Update, context: CallbackContext) -> None:
     # id = update.callback_query.id
 
     print(user_data['language'])
-    update.callback_query.answer('this', show_alert=True)
+    context.bot.answerCallbackQuery(callback_query_id=update.callback_query.id, text="Turning off light OFF!")
+    # update.callback_query.answer('this', show_alert=True)
     # update.message.reply_text(translate_key_to(lp.LANGUAGE_CHANGED, user_data['language']))
     # update.message.reply_text(
     #     translate_key_to(lp.START_OVER_MESSAGE, user_data['language']),
