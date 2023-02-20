@@ -1126,6 +1126,7 @@ def set_language(update: Update, context: CallbackContext) -> None:
         user_data['language'] = 'fa'
     # id = update.callback_query.id
 
+    print(user_data['language'])
     update.message.reply_text(translate_key_to(lp.LANGUAGE_CHANGED, user_data['language']))
     update.message.reply_text(
         translate_key_to(lp.START_OVER_MESSAGE, user_data['language']),
