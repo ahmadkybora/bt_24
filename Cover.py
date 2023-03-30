@@ -1092,19 +1092,22 @@ def command_about(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(translate_key_to(lp.ABOUT_MESSAGE, context.user_data['language']))
 
 def show_language_keyboard(update: Update, _context: CallbackContext) -> None:
-    language_button_keyboard = [
-        [InlineKeyboardButton('🇬🇧 English', callback_data='^(🇬🇧 English)$')],
-        [InlineKeyboardButton('🇮🇷 فارسی', callback_data='^(🇮🇷 فارسی)$')],
-    ]
+    language_button_keyboard = ReplyKeyboardMarkup(
+        [
+            ['🇬🇧 English', '🇮🇷 فارسی'],
+        ],
+        resize_keyboard=True,
+        one_time_keyboard=True,
+    )
 
     update.message.reply_text(
         "Please choose a language:\n\n"
         "لطفا زبان را انتخاب کنید:",
-        reply_markup=InlineKeyboardMarkup(language_button_keyboard),
+        reply_markup=language_button_keyboard,
     )
 
 def set_language(update: Update, context: CallbackContext) -> None:
-    lang = update.callback_query.data.lower()
+    lang = update.message.text.lower()
     user_data = context.user_data
     user_id = update.effective_user.id
 
