@@ -119,7 +119,7 @@ def show_module_selector(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(
         translate_key_to(lp.ASK_WHICH_MODULE, lang),
         reply_to_message_id=update.effective_message.message_id,
-        reply_markup=module_selector_keyboard
+        reply_markup=InlineKeyboardMarkup(module_selector_keyboard)
     )
 
 def handle_music_message(update: Update, context: CallbackContext) -> None:
