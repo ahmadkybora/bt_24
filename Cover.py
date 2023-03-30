@@ -1092,16 +1092,6 @@ def command_about(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(translate_key_to(lp.ABOUT_MESSAGE, context.user_data['language']))
 
 def show_language_keyboard(update: Update, _context: CallbackContext) -> None:
-    # language_button_keyboard = ReplyKeyboardMarkup(
-    #     [
-    #         ['🇬🇧 English', '🇮🇷 فارسی'],
-    #     ],
-    #     resize_keyboard=True,
-    #     one_time_keyboard=True,
-    # )
-
-    # each = ['🇬🇧 English', '🇮🇷 فارسی']
-    # language_button_keyboard = InlineKeyboardButton(each, callback_data = each)
     language_button_keyboard = [
         [InlineKeyboardButton('🇬🇧 English', callback_data='^(🇬🇧 English)$')],
         [InlineKeyboardButton('🇮🇷 فارسی', callback_data='^(🇮🇷 فارسی)$')],
@@ -1114,9 +1104,7 @@ def show_language_keyboard(update: Update, _context: CallbackContext) -> None:
     )
 
 def set_language(update: Update, context: CallbackContext) -> None:
-    # data = update.callback_query.data
     data = update.callback_query.data.lower()
-    print(data)
     user_data = context.user_data
     user_id = update.effective_user.id
 
@@ -1126,6 +1114,7 @@ def set_language(update: Update, context: CallbackContext) -> None:
         user_data['language'] = 'fa'
     # id = update.callback_query.id
 
+    print(user_data['language'])
     # language_button_keyboard = [
     #     [InlineKeyboardButton('🇬🇧 English1', callback_data='^(🇬🇧 English)$')],
     #     [InlineKeyboardButton('🇮🇷 فارسی2', callback_data='^(🇮🇷 فارسی)$')],
