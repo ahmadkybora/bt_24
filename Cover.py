@@ -1104,15 +1104,14 @@ def show_language_keyboard(update: Update, _context: CallbackContext) -> None:
     )
 
 def set_language(update: Update, context: CallbackContext) -> None:
-    data = update.callback_query.data.lower()
+    lang = update.callback_query.data.lower()
     user_data = context.user_data
     user_id = update.effective_user.id
 
-    if '^(🇬🇧 English)$' in data:
+    if "english" in lang:
         user_data['language'] = 'en'
-    elif '^(🇮🇷 فارسی)$' in data:
+    elif "فارسی" in lang:
         user_data['language'] = 'fa'
-    # id = update.callback_query.id
 
     print(user_data['language'])
     # language_button_keyboard = [
