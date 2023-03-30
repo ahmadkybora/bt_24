@@ -1126,16 +1126,16 @@ def set_language(update: Update, context: CallbackContext) -> None:
         user_data['language'] = 'fa'
     # id = update.callback_query.id
 
-    language_button_keyboard = [
-        [InlineKeyboardButton('🇬🇧 English1', callback_data='^(🇬🇧 English)$')],
-        [InlineKeyboardButton('🇮🇷 فارسی2', callback_data='^(🇮🇷 فارسی)$')],
-    ]
+    # language_button_keyboard = [
+    #     [InlineKeyboardButton('🇬🇧 English1', callback_data='^(🇬🇧 English)$')],
+    #     [InlineKeyboardButton('🇮🇷 فارسی2', callback_data='^(🇮🇷 فارسی)$')],
+    # ]
 
-    update.callback_query.message.edit_text(
-        "Please choose a language:\n\n"
-        "لطفا زبان را انتخاب کنید:",
-        reply_markup=InlineKeyboardMarkup(language_button_keyboard),
-    )
+    # update.callback_query.message.edit_text(
+    #     "Please choose a language:\n\n"
+    #     "لطفا زبان را انتخاب کنید:",
+    #     reply_markup=InlineKeyboardMarkup(language_button_keyboard),
+    # )
 
     # update.message.reply_text(
     #     "Please choose a language:\n\n"
