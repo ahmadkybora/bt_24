@@ -4,7 +4,7 @@ from pathlib import Path
 import logging
 
 import music_tag
-from telegram import ReplyKeyboardMarkup
+from telegram import ReplyKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext
 
 from models.admin import Admin
@@ -319,22 +319,35 @@ def generate_module_selector_keyboard(language: str) -> ReplyKeyboardMarkup:
     **Returns:**
      ReplyKeyboardMarkup instance
     """
-    return (
-        ReplyKeyboardMarkup(
-            [
-                [
-                    translate_key_to('BTN_TAG_EDITOR', language),
-                    translate_key_to('BTN_MUSIC_TO_VOICE_CONVERTER', language)
-                ],
-                [
-                    translate_key_to('BTN_MUSIC_CUTTER', language),
-                    translate_key_to('BTN_BITRATE_CHANGER', language)
-                ]
-            ],
-            resize_keyboard=True,
-            one_time_keyboard=True,
-        )
-    )
+    language_button_keyboard = [
+        [
+            InlineKeyboardButton(translate_key_to('BTN_TAG_EDITOR', language), callback_data=translate_key_to('BTN_TAG_EDITOR', language)),
+            InlineKeyboardButton(translate_key_to('BTN_MUSIC_TO_VOICE_CONVERTER', language), callback_data=translate_key_to('BTN_MUSIC_TO_VOICE_CONVERTER', language))
+        ],
+        [
+            InlineKeyboardButton(translate_key_to('BTN_MUSIC_CUTTER', language), callback_data=translate_key_to('BTN_MUSIC_CUTTER', language)),
+            InlineKeyboardButton(translate_key_to('BTN_BITRATE_CHANGER', language), callback_data=translate_key_to('BTN_BITRATE_CHANGER', language))
+        ],
+    ]
+
+    return language_button_keyboard
+
+    # return (
+    #     ReplyKeyboardMarkup(
+    #         [
+    #             [
+    #                 translate_key_to('BTN_TAG_EDITOR', language),
+    #                 translate_key_to('BTN_MUSIC_TO_VOICE_CONVERTER', language)
+    #             ],
+    #             [
+    #                 translate_key_to('BTN_MUSIC_CUTTER', language),
+    #                 translate_key_to('BTN_BITRATE_CHANGER', language)
+    #             ]
+    #         ],
+    #         resize_keyboard=True,
+    #         one_time_keyboard=True,
+    #     )
+    # )
 
 def generate_module_selector_video_keyboard(language: str) -> ReplyKeyboardMarkup:
     """Create an return an instance of `module_selector_video_keyboard`

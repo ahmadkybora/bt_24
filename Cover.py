@@ -1113,15 +1113,7 @@ def set_language(update: Update, context: CallbackContext) -> None:
     elif "فارسی" in lang:
         user_data['language'] = 'fa'
 
-    print(user_data['language'])
     update.callback_query.message.edit_text(translate_key_to(lp.LANGUAGE_CHANGED, user_data['language']))
-    # update.callback_query.message.edit_text(translate_key_to(lp.START_OVER_MESSAGE, user_data['language']))
-
-    # update.message.reply_text(translate_key_to(lp.LANGUAGE_CHANGED, user_data['language']))
-    # update.message.reply_text(
-    #     translate_key_to(lp.START_OVER_MESSAGE, user_data['language']),
-    #     reply_markup=ReplyKeyboardRemove()
-    # )
 
     user = User.where('user_id', '=', user_id).first()
     user.language = user_data['language']
