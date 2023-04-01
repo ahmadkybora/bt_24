@@ -298,6 +298,7 @@ def handle_music_tag_editor(update: Update, context: CallbackContext) -> None:
     lang = update.callback_query.data.lower()
     message = update.message
     print(lang)
+    print(1)
     print(message)
     user_data = context.user_data
     art_path = user_data['art_path']
