@@ -1188,7 +1188,7 @@ def main():
         (Filters.regex('^(🆕 New File or Link)$') | Filters.regex('^(🆕 فایل یا لینک جدید)$')),
         start_over)
     )
-    add_handler(MessageHandler(Filters.regex('^(🎵 تغییر تگ ها)$')),handle_music_tag_editor)
+    add_handler(MessageHandler(Filters.regex('^(🎵 تغییر تگ ها)$'),handle_music_tag_editor))
     add_handler(MessageHandler(
         (Filters.regex('^(🗣 Music to Voice Converter)$') | Filters.regex('^(🗣 تبدیل به پیام صوتی)$')),
         handle_music_to_voice_converter)
