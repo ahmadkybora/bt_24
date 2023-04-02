@@ -325,7 +325,7 @@ def generate_module_selector_keyboard(language: str) -> ReplyKeyboardMarkup:
         [InlineKeyboardButton(translate_key_to('BTN_MUSIC_CUTTER', language), callback_data=translate_key_to('BTN_MUSIC_CUTTER', language))],
         [InlineKeyboardButton(translate_key_to('BTN_BITRATE_CHANGER', language), callback_data=translate_key_to('BTN_BITRATE_CHANGER', language))],
     ]
-
+    print(1)
     return language_button_keyboard
 
     # return (
