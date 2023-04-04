@@ -111,7 +111,6 @@ def command_help(update: Update, context: CallbackContext) -> None:
 
 def show_module_selector(update: Update, context: CallbackContext) -> None:
     user_data = context.user_data
-    print(user_data)
     context.user_data['current_active_module'] = ''
     lang = user_data['language']
 
@@ -298,9 +297,7 @@ def command_list_users(update: Update, _context: CallbackContext) -> None:
 def handle_music_tag_editor(update: Update, context: CallbackContext) -> None:
     lang = update.callback_query.data.lower()
     message = update.message
-    print(lang)
     print(1)
-    print(message)
     user_data = context.user_data
     art_path = user_data['art_path']
     lang = user_data['language']
@@ -1190,7 +1187,8 @@ def main():
         start_over)
     )
     # add_handler(MessageHandler(Filters.regex('^(🎵 تغییر تگ ها)$'),handle_music_tag_editor))
-    add_handler(CallbackQueryHandler(handle_music_tag_editor))
+    add_handler(CallbackQueryHandler(handle_music_tag_editor, pattern='^(🎵 تغییر تگ ها)$'))
+    
     add_handler(MessageHandler(
         (Filters.regex('^(🗣 Music to Voice Converter)$') | Filters.regex('^(🗣 تبدیل به پیام صوتی)$')),
         handle_music_to_voice_converter)
