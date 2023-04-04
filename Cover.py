@@ -109,11 +109,11 @@ def start_over(update: Update, context: CallbackContext) -> None:
 def command_help(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(translate_key_to(lp.HELP_MESSAGE, context.user_data['language']))
 
-def show_module_selector(update: Update, context: CallbackContext) -> None:
-    user_data = context.user_data
-    print(user_data)
-    context.user_data['current_active_module'] = ''
-    lang = user_data['language']
+def show_module_selector(update: Update, _context: CallbackContext) -> None:
+    # user_data = context.user_data
+    # print(user_data)
+    # context.user_data['current_active_module'] = ''
+    # lang = user_data['language']
 
     # module_selector_keyboard = generate_module_selector_keyboard(lang)
     language_button_keyboard = [
@@ -123,7 +123,7 @@ def show_module_selector(update: Update, context: CallbackContext) -> None:
         # [InlineKeyboardButton(translate_key_to('BTN_BITRATE_CHANGER', language), callback_data=translate_key_to('BTN_BITRATE_CHANGER', language))],
     ]
     update.message.reply_text(
-        translate_key_to(lp.ASK_WHICH_MODULE, lang),
+        # translate_key_to(lp.ASK_WHICH_MODULE, lang),
         # reply_to_message_id=update.effective_message.message_id,
         reply_markup=InlineKeyboardMarkup(language_button_keyboard)
     )
