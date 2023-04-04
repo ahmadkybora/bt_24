@@ -111,6 +111,7 @@ def command_help(update: Update, context: CallbackContext) -> None:
 
 def show_module_selector(update: Update, context: CallbackContext) -> None:
     user_data = context.user_data
+    print(user_data)
     context.user_data['current_active_module'] = ''
     lang = user_data['language']
 
