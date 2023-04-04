@@ -115,12 +115,17 @@ def show_module_selector(update: Update, context: CallbackContext) -> None:
     context.user_data['current_active_module'] = ''
     lang = user_data['language']
 
-    module_selector_keyboard = generate_module_selector_keyboard(lang)
-
+    # module_selector_keyboard = generate_module_selector_keyboard(lang)
+    language_button_keyboard = [
+        [InlineKeyboardButton('🎵 تغییر تگ ها', callback_data='^(🎵 تغییر تگ ها)$')],
+        # [InlineKeyboardButton(translate_key_to('BTN_MUSIC_TO_VOICE_CONVERTER', language), callback_data=translate_key_to('BTN_MUSIC_TO_VOICE_CONVERTER', language))],
+        # [InlineKeyboardButton(translate_key_to('BTN_MUSIC_CUTTER', language), callback_data=translate_key_to('BTN_MUSIC_CUTTER', language))],
+        # [InlineKeyboardButton(translate_key_to('BTN_BITRATE_CHANGER', language), callback_data=translate_key_to('BTN_BITRATE_CHANGER', language))],
+    ]
     update.message.reply_text(
         translate_key_to(lp.ASK_WHICH_MODULE, lang),
         # reply_to_message_id=update.effective_message.message_id,
-        reply_markup=InlineKeyboardMarkup(module_selector_keyboard)
+        reply_markup=InlineKeyboardMarkup(language_button_keyboard)
     )
 
 def handle_music_message(update: Update, context: CallbackContext) -> None:
