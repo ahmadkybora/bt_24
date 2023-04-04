@@ -109,23 +109,18 @@ def start_over(update: Update, context: CallbackContext) -> None:
 def command_help(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(translate_key_to(lp.HELP_MESSAGE, context.user_data['language']))
 
-def show_module_selector(update: Update, _context: CallbackContext) -> None:
-    # user_data = context.user_data
-    # print(user_data)
-    # context.user_data['current_active_module'] = ''
-    # lang = user_data['language']
+def show_module_selector(update: Update, context: CallbackContext) -> None:
+    user_data = context.user_data
+    print(user_data)
+    context.user_data['current_active_module'] = ''
+    lang = user_data['language']
 
-    # module_selector_keyboard = generate_module_selector_keyboard(lang)
-    language_button_keyboard = [
-        [InlineKeyboardButton('🎵 تغییر تگ ها', callback_data='^(🎵 تغییر تگ ها)$')],
-        # [InlineKeyboardButton(translate_key_to('BTN_MUSIC_TO_VOICE_CONVERTER', language), callback_data=translate_key_to('BTN_MUSIC_TO_VOICE_CONVERTER', language))],
-        # [InlineKeyboardButton(translate_key_to('BTN_MUSIC_CUTTER', language), callback_data=translate_key_to('BTN_MUSIC_CUTTER', language))],
-        # [InlineKeyboardButton(translate_key_to('BTN_BITRATE_CHANGER', language), callback_data=translate_key_to('BTN_BITRATE_CHANGER', language))],
-    ]
+    module_selector_keyboard = generate_module_selector_keyboard(lang)
+
     update.message.reply_text(
-        # translate_key_to(lp.ASK_WHICH_MODULE, lang),
-        # reply_to_message_id=update.effective_message.message_id,
-        reply_markup=InlineKeyboardMarkup(language_button_keyboard)
+        translate_key_to(lp.ASK_WHICH_MODULE, lang),
+        reply_to_message_id=update.effective_message.message_id,
+        reply_markup=InlineKeyboardMarkup(module_selector_keyboard)
     )
 
 def handle_music_message(update: Update, context: CallbackContext) -> None:
@@ -1180,8 +1175,8 @@ def main():
     ############################
     # Change Language Handlers #
     ############################
-    add_handler(MessageHandler(Filters.regex('^(🇬🇧 English)$'), set_language))
-    add_handler(MessageHandler(Filters.regex('^(🇮🇷 فارسی)$'), set_language))
+    # add_handler(MessageHandler(Filters.regex('^(🇬🇧 English)$'), set_language))
+    # add_handler(MessageHandler(Filters.regex('^(🇮🇷 فارسی)$'), set_language))
 
     ############################
     # Module Selector Handlers #
