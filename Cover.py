@@ -1149,8 +1149,7 @@ def main():
     add_handler(CommandHandler('done', finish_editing_tags))
     add_handler(CommandHandler('preview', display_preview))
 
-    # add_handler(CallbackQueryHandler(set_language))
-
+    add_handler(CallbackQueryHandler(set_language, pattern=Filters.regex('^(🇬🇧 English)$') | Filters.regex('^(🇮🇷 فارسی)$')))
     ##########################
     # Admin Command Handlers #
     ##########################
