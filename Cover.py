@@ -1189,8 +1189,9 @@ def main():
         start_over)
     )
     # add_handler(MessageHandler(Filters.regex('^(🎵 تغییر تگ ها)$'),handle_music_tag_editor))
-    add_handler(CallbackQueryHandler(handle_music_tag_editor, pattern='🎵 تغییر تگ ها'))
-    
+    add_handler(CallbackQueryHandler(handle_music_tag_editor, pattern=('🎵 Tag Editor') | ('🎵 تغییر تگ ها')))
+    # add_handler(CallbackQueryHandler(handle_music_tag_editor, pattern='🎵 تغییر تگ ها'))
+
     add_handler(MessageHandler(
         (Filters.regex('^(🗣 Music to Voice Converter)$') | Filters.regex('^(🗣 تبدیل به پیام صوتی)$')),
         handle_music_to_voice_converter)
