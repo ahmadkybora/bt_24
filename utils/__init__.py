@@ -320,7 +320,7 @@ def generate_module_selector_keyboard(language: str) -> ReplyKeyboardMarkup:
      ReplyKeyboardMarkup instance
     """
     language_button_keyboard = [
-        [InlineKeyboardButton('🎵 تغییر تگ ها', callback_data='^(🎵 تغییر تگ ها)$')],
+        [InlineKeyboardButton('🎵 تغییر تگ ها', callback_data='تغییر تگ ها')],
         # [InlineKeyboardButton(translate_key_to('BTN_MUSIC_TO_VOICE_CONVERTER', language), callback_data=translate_key_to('BTN_MUSIC_TO_VOICE_CONVERTER', language))],
         # [InlineKeyboardButton(translate_key_to('BTN_MUSIC_CUTTER', language), callback_data=translate_key_to('BTN_MUSIC_CUTTER', language))],
         # [InlineKeyboardButton(translate_key_to('BTN_BITRATE_CHANGER', language), callback_data=translate_key_to('BTN_BITRATE_CHANGER', language))],
