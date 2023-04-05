@@ -1095,8 +1095,8 @@ def command_about(update: Update, context: CallbackContext) -> None:
 
 def show_language_keyboard(update: Update, _context: CallbackContext) -> None:
     language_button_keyboard = [
-        [InlineKeyboardButton('🇬🇧 English', callback_data='^(🇬🇧 English)$')],
-        [InlineKeyboardButton('🇮🇷 فارسی', callback_data='f')],
+        [InlineKeyboardButton('🇬🇧 English', callback_data='english')],
+        [InlineKeyboardButton('🇮🇷 فارسی', callback_data='persian')],
     ]
 
     update.message.reply_text(
@@ -1110,9 +1110,10 @@ def set_language(update: Update, context: CallbackContext) -> None:
     user_data = context.user_data
     user_id = update.effective_user.id
 
+    print(lang)
     if "english" in lang:
         user_data['language'] = 'en'
-    elif "فارسی" in lang:
+    elif "persian" in lang:
         user_data['language'] = 'fa'
 
     update.callback_query.message.edit_text(translate_key_to(lp.LANGUAGE_CHANGED, user_data['language']))
