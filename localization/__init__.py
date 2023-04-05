@@ -247,8 +247,8 @@ keys = {
         "fa": "زمان پایان باید از زمان شروع بزرگتر باشد.",
     },
     BTN_TAG_EDITOR: {
-        "en": "🎵 Tag Editor",
-        "fa": "🎵 تغییر تگ ها",
+        "en": "Tag Editor",
+        "fa": "تغییر تگ ها",
     },
     BTN_MUSIC_TO_VOICE_CONVERTER: {
         "en": "🗣 Music to Voice Converter",
