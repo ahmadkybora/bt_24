@@ -400,30 +400,39 @@ def generate_tag_editor_keyboard(language: str) -> ReplyKeyboardMarkup:
     **Returns:**
      ReplyKeyboardMarkup instance
     """
-    return (
-        ReplyKeyboardMarkup(
-            [
-                [
-                    translate_key_to('BTN_ARTIST', language),
-                    translate_key_to('BTN_TITLE', language),
-                    translate_key_to('BTN_ALBUM', language)
-                ],
-                [
-                    translate_key_to('BTN_GENRE', language),
-                    translate_key_to('BTN_YEAR', language),
-                    translate_key_to('BTN_ALBUM_ART', language)
-                ],
-                [
-                    translate_key_to('BTN_DISK_NUMBER', language),
-                    translate_key_to('BTN_TRACK_NUMBER', language)
-                ],
-                [
-                    translate_key_to('BTN_BACK', language)
-                ]
-            ],
-            resize_keyboard=True,
-        )
-    )
+    language_button_keyboard = [
+        [InlineKeyboardButton(translate_key_to('BTN_ARTIST', language), callback_data=translate_key_to('BTN_ARTIST', language))],
+        [InlineKeyboardButton(translate_key_to('BTN_TITLE', language), callback_data=translate_key_to('BTN_TITLE', language))],
+        # [InlineKeyboardButton(translate_key_to('BTN_MUSIC_CUTTER', language), callback_data=translate_key_to('BTN_MUSIC_CUTTER', language))],
+        # [InlineKeyboardButton(translate_key_to('BTN_BITRATE_CHANGER', language), callback_data=translate_key_to('BTN_BITRATE_CHANGER', language))],
+    ]
+
+    return language_button_keyboard
+
+    # return (
+    #     ReplyKeyboardMarkup(
+    #         [
+    #             [
+    #                 translate_key_to('BTN_ARTIST', language),
+    #                 translate_key_to('BTN_TITLE', language),
+    #                 translate_key_to('BTN_ALBUM', language)
+    #             ],
+    #             [
+    #                 translate_key_to('BTN_GENRE', language),
+    #                 translate_key_to('BTN_YEAR', language),
+    #                 translate_key_to('BTN_ALBUM_ART', language)
+    #             ],
+    #             [
+    #                 translate_key_to('BTN_DISK_NUMBER', language),
+    #                 translate_key_to('BTN_TRACK_NUMBER', language)
+    #             ],
+    #             [
+    #                 translate_key_to('BTN_BACK', language)
+    #             ]
+    #         ],
+    #         resize_keyboard=True,
+    #     )
+    # )
 
 def generate_tag_editor_video_keyboard(language: str) -> ReplyKeyboardMarkup:
     """Create an return an instance of `tag_editor_keyboard`

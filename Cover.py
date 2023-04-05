@@ -321,8 +321,8 @@ def handle_music_tag_editor(update: Update, context: CallbackContext) -> None:
     else:
         update.callback_query.message.edit_text(
             generate_music_info(tag_editor_context).format(f"\n🆔 {BOT_USERNAME}"),
-            # reply_to_message_id=update.effective_message.message_id,
-            reply_markup=tag_editor_keyboard
+            reply_to_message_id=update.effective_message.message_id,
+            reply_markup=InlineKeyboardMarkup(tag_editor_keyboard)
         )
 
 def handle_music_to_voice_converter(update: Update, context: CallbackContext) -> None:
