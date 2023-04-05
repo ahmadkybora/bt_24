@@ -319,7 +319,7 @@ def handle_music_tag_editor(update: Update, context: CallbackContext) -> None:
                 parse_mode='Markdown'
             )
     else:
-        message.reply_text(
+        update.callback_query.message.edit_text(
             generate_music_info(tag_editor_context).format(f"\n🆔 {BOT_USERNAME}"),
             reply_to_message_id=update.effective_message.message_id,
             reply_markup=tag_editor_keyboard
