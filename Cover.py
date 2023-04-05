@@ -1150,7 +1150,7 @@ def main():
     add_handler(CommandHandler('done', finish_editing_tags))
     add_handler(CommandHandler('preview', display_preview))
 
-    add_handler(CallbackQueryHandler(set_language, pattern='f'))
+    add_handler(CallbackQueryHandler(set_language, pattern='persian'))
     ##########################
     # Admin Command Handlers #
     ##########################
