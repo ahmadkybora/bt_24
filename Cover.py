@@ -1096,7 +1096,7 @@ def command_about(update: Update, context: CallbackContext) -> None:
 def show_language_keyboard(update: Update, _context: CallbackContext) -> None:
     language_button_keyboard = [
         [InlineKeyboardButton('🇬🇧 English', callback_data='^(🇬🇧 English)$')],
-        [InlineKeyboardButton('🇮🇷 فارسی', callback_data='^(🇮🇷 فارسی)$')],
+        [InlineKeyboardButton('🇮🇷 فارسی', callback_data='f')],
     ]
 
     update.message.reply_text(
@@ -1149,7 +1149,7 @@ def main():
     add_handler(CommandHandler('done', finish_editing_tags))
     add_handler(CommandHandler('preview', display_preview))
 
-    add_handler(CallbackQueryHandler(set_language, pattern='^(🇮🇷 فارسی)$'))
+    add_handler(CallbackQueryHandler(set_language, pattern='f'))
     ##########################
     # Admin Command Handlers #
     ##########################
