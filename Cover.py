@@ -870,7 +870,6 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
             message.reply_text(reply_message, reply_markup=tag_editor_keyboard)
         elif current_tag == 'album_art':
             reply_message = translate_key_to(lp.ASK_FOR_ALBUM_ART, lang)
-            print(reply_message)
             message.reply_text(reply_message, reply_markup=tag_editor_keyboard)
         else:
             save_text_into_tag(
@@ -879,6 +878,7 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
                 context=context,
                 is_number=current_tag in ('year', 'disknumber', 'tracknumber')
             )
+            print(update.callback_query)
             reply_message = f"{translate_key_to(lp.DONE, lang)} " \
                             f"{translate_key_to(lp.CLICK_PREVIEW_MESSAGE, lang)} " \
                             f"{translate_key_to(lp.OR, lang).upper()}" \
