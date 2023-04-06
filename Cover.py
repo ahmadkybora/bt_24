@@ -799,7 +799,8 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
     art_path = user_data['art_path']
     music_tags = user_data['tag_editor']
     current_tag = music_tags.get('current_tag')
-    lang = user_data['language']
+    # lang = user_data['language']
+    lang = update.callback_query.data.lower()
 
     logging.info(
         "%s:%s:%s",
