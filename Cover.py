@@ -725,7 +725,7 @@ def prepare_for_title(update: Update, context: CallbackContext) -> None:
         context.user_data['tag_editor']['current_tag'] = 'title'
         message_text = translate_key_to(lp.ASK_FOR_TITLE, context.user_data['language'])
 
-    update.message.reply_text(message_text)
+    update.callback_query.message.edit_text(message_text)
 
 def throw_not_implemented(update: Update, context: CallbackContext) -> None:
     lang = context.user_data['language']
@@ -744,7 +744,7 @@ def prepare_for_album(update: Update, context: CallbackContext) -> None:
         context.user_data['tag_editor']['current_tag'] = 'album'
         message_text = translate_key_to(lp.ASK_FOR_ALBUM, context.user_data['language'])
 
-    update.message.reply_text(message_text)
+    update.callback_query.message.edit_text(message_text)
 
 def prepare_for_genre(update: Update, context: CallbackContext) -> None:
     if len(context.user_data) == 0:
@@ -753,7 +753,7 @@ def prepare_for_genre(update: Update, context: CallbackContext) -> None:
         context.user_data['tag_editor']['current_tag'] = 'genre'
         message_text = translate_key_to(lp.ASK_FOR_GENRE, context.user_data['language'])
 
-    update.message.reply_text(message_text)
+    update.callback_query.message.edit_text(message_text)
 
 def prepare_for_year(update: Update, context: CallbackContext) -> None:
     if len(context.user_data) == 0:
@@ -762,7 +762,7 @@ def prepare_for_year(update: Update, context: CallbackContext) -> None:
         context.user_data['tag_editor']['current_tag'] = 'year'
         message_text = translate_key_to(lp.ASK_FOR_YEAR, context.user_data['language'])
 
-    update.message.reply_text(message_text)
+    update.callback_query.message.edit_text(message_text)
 
 def prepare_for_album_art(update: Update, context: CallbackContext) -> None:
     if len(context.user_data) == 0:
@@ -771,7 +771,7 @@ def prepare_for_album_art(update: Update, context: CallbackContext) -> None:
         context.user_data['tag_editor']['current_tag'] = 'album_art'
         message_text = translate_key_to(lp.ASK_FOR_ALBUM_ART, context.user_data['language'])
 
-    update.message.reply_text(message_text)
+    update.callback_query.message.edit_text(message_text)
 
 def prepare_for_disknumber(update: Update, context: CallbackContext) -> None:
     if len(context.user_data) == 0:
@@ -780,7 +780,7 @@ def prepare_for_disknumber(update: Update, context: CallbackContext) -> None:
         context.user_data['tag_editor']['current_tag'] = 'disknumber'
         message_text = translate_key_to(lp.ASK_FOR_DISK_NUMBER, context.user_data['language'])
 
-    update.message.reply_text(message_text)
+    update.callback_query.message.edit_text(message_text)
 
 def prepare_for_tracknumber(update: Update, context: CallbackContext) -> None:
     if len(context.user_data) == 0:
@@ -789,7 +789,7 @@ def prepare_for_tracknumber(update: Update, context: CallbackContext) -> None:
         context.user_data['tag_editor']['current_tag'] = 'tracknumber'
         message_text = translate_key_to(lp.ASK_FOR_TRACK_NUMBER, context.user_data['language'])
 
-    update.message.reply_text(message_text)
+    update.callback_query.message.edit_text(message_text)
 
 def handle_responses(update: Update, context: CallbackContext) -> None:
     message = update.message
