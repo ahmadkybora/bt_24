@@ -297,7 +297,6 @@ def command_list_users(update: Update, _context: CallbackContext) -> None:
 def handle_music_tag_editor(update: Update, context: CallbackContext) -> None:
     lang = update.callback_query.data.lower()
     message = update.message
-    print(1)
     user_data = context.user_data
     art_path = user_data['art_path']
     lang = user_data['language']
@@ -1110,7 +1109,6 @@ def set_language(update: Update, context: CallbackContext) -> None:
     user_data = context.user_data
     user_id = update.effective_user.id
 
-    print(lang)
     if "english" in lang:
         user_data['language'] = 'en'
     elif "persian" in lang:
@@ -1208,38 +1206,62 @@ def main():
     #######################
     # Tag Editor Handlers #
     #######################
-    add_handler(MessageHandler(
-        (Filters.regex('^(🗣 Artist)$') | Filters.regex('^(🗣 خواننده)$')),
-        prepare_for_artist)
-    )
-    add_handler(MessageHandler(
-        (Filters.regex('^(🎵 Title)$') | Filters.regex('^(🎵 عنوان)$')),
-        prepare_for_title)
-    )
-    add_handler(MessageHandler(
-        (Filters.regex('^(🎼 Album)$') | Filters.regex('^(🎼 آلبوم)$')),
-        prepare_for_album)
-    )
-    add_handler(MessageHandler(
-        (Filters.regex('^(🎹 Genre)$') | Filters.regex('^(🎹 ژانر)$')),
-        prepare_for_genre)
-    )
-    add_handler(MessageHandler(
-        (Filters.regex('^(🖼 Album Art)$') | Filters.regex('^(🖼 عکس آلبوم)$')),
-        prepare_for_album_art)
-    )
-    add_handler(MessageHandler(
-        (Filters.regex('^(📅 Year)$') | Filters.regex('^(📅 سال)$')),
-        prepare_for_year)
-    )
-    add_handler(MessageHandler(
-        (Filters.regex('^(💿 Disk Number)$') | Filters.regex('^(💿  شماره دیسک)$')),
-        prepare_for_disknumber)
-    )
-    add_handler(MessageHandler(
-        (Filters.regex('^(▶️ Track Number)$') | Filters.regex('^(▶️ شماره ترک)$')),
-        prepare_for_tracknumber)
-    )
+    add_handler(CallbackQueryHandler(prepare_for_artist, pattern='🗣 خواننده'))
+    add_handler(CallbackQueryHandler(prepare_for_artist, pattern='🗣 Artist'))
+
+    add_handler(CallbackQueryHandler(prepare_for_title, pattern='🎵 عنوان'))
+    add_handler(CallbackQueryHandler(prepare_for_title, pattern='🎵 Title'))
+
+    add_handler(CallbackQueryHandler(prepare_for_album, pattern='🎼 آلبوم'))
+    add_handler(CallbackQueryHandler(prepare_for_album, pattern='🎼 Album'))
+
+    add_handler(CallbackQueryHandler(prepare_for_genre, pattern='🎹 ژانر'))
+    add_handler(CallbackQueryHandler(prepare_for_genre, pattern='🎹 Genre'))
+
+    add_handler(CallbackQueryHandler(prepare_for_album_art, pattern='🖼 عکس آلبوم'))
+    add_handler(CallbackQueryHandler(prepare_for_album_art, pattern='🖼 Album Art'))
+
+    add_handler(CallbackQueryHandler(prepare_for_album_art, pattern='📅 سال'))
+    add_handler(CallbackQueryHandler(prepare_for_album_art, pattern='📅 Year'))
+
+    add_handler(CallbackQueryHandler(prepare_for_disknumber, pattern='💿  شماره دیسک'))
+    add_handler(CallbackQueryHandler(prepare_for_disknumber, pattern='💿 Disk Number'))
+
+    add_handler(CallbackQueryHandler(prepare_for_tracknumber, pattern='▶️ شماره ترک'))
+    add_handler(CallbackQueryHandler(prepare_for_tracknumber, pattern='▶️ Track Number'))
+
+    # add_handler(MessageHandler(
+    #     (Filters.regex('^(🗣 Artist)$') | Filters.regex('^(🗣 خواننده)$')),
+    #     prepare_for_artist)
+    # )
+    # add_handler(MessageHandler(
+    #     (Filters.regex('^(🎵 Title)$') | Filters.regex('^(🎵 عنوان)$')),
+    #     prepare_for_title)
+    # )
+    # add_handler(MessageHandler(
+    #     (Filters.regex('^(🎼 Album)$') | Filters.regex('^(🎼 آلبوم)$')),
+    #     prepare_for_album)
+    # )
+    # add_handler(MessageHandler(
+    #     (Filters.regex('^(🎹 Genre)$') | Filters.regex('^(🎹 ژانر)$')),
+    #     prepare_for_genre)
+    # )
+    # add_handler(MessageHandler(
+    #     (Filters.regex('^(🖼 Album Art)$') | Filters.regex('^(🖼 عکس آلبوم)$')),
+    #     prepare_for_album_art)
+    # )
+    # add_handler(MessageHandler(
+    #     (Filters.regex('^(📅 Year)$') | Filters.regex('^(📅 سال)$')),
+    #     prepare_for_year)
+    # )
+    # add_handler(MessageHandler(
+    #     (Filters.regex('^(💿 Disk Number)$') | Filters.regex('^(💿  شماره دیسک)$')),
+    #     prepare_for_disknumber)
+    # )
+    # add_handler(MessageHandler(
+    #     (Filters.regex('^(▶️ Track Number)$') | Filters.regex('^(▶️ شماره ترک)$')),
+    #     prepare_for_tracknumber)
+    # )
 
     #######################
     # Convert video #
