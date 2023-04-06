@@ -800,7 +800,6 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
     music_tags = user_data['tag_editor']
     current_tag = music_tags.get('current_tag')
     lang = user_data['language']
-    # lang = update.callback_query.data.lower()
 
     logging.info(
         "%s:%s:%s",
@@ -883,7 +882,7 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
                             f"{translate_key_to(lp.CLICK_PREVIEW_MESSAGE, lang)} " \
                             f"{translate_key_to(lp.OR, lang).upper()}" \
                             f" {translate_key_to(lp.CLICK_DONE_MESSAGE, lang).lower()}"
-            message.reply_text(reply_message, reply_markup=tag_editor_keyboard)
+            message.reply_text(reply_message, reply_markup=InlineKeyboardMarkup(tag_editor_keyboard))
     elif current_active_module == 'music_cutter':
         try:
             beginning_sec, ending_sec = parse_cutting_range(message_text)
