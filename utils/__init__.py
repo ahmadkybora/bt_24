@@ -403,8 +403,13 @@ def generate_tag_editor_keyboard(language: str) -> ReplyKeyboardMarkup:
     language_button_keyboard = [
         [InlineKeyboardButton(translate_key_to('BTN_ARTIST', language), callback_data=translate_key_to('BTN_ARTIST', language))],
         [InlineKeyboardButton(translate_key_to('BTN_TITLE', language), callback_data=translate_key_to('BTN_TITLE', language))],
-        # [InlineKeyboardButton(translate_key_to('BTN_MUSIC_CUTTER', language), callback_data=translate_key_to('BTN_MUSIC_CUTTER', language))],
-        # [InlineKeyboardButton(translate_key_to('BTN_BITRATE_CHANGER', language), callback_data=translate_key_to('BTN_BITRATE_CHANGER', language))],
+        [InlineKeyboardButton(translate_key_to('BTN_ALBUM', language), callback_data=translate_key_to('BTN_ALBUM', language))],
+        [InlineKeyboardButton(translate_key_to('BTN_GENRE', language), callback_data=translate_key_to('BTN_GENRE', language))],
+        [InlineKeyboardButton(translate_key_to('BTN_YEAR', language), callback_data=translate_key_to('BTN_YEAR', language))],
+        [InlineKeyboardButton(translate_key_to('BTN_ALBUM_ART', language), callback_data=translate_key_to('BTN_ALBUM_ART', language))],
+        [InlineKeyboardButton(translate_key_to('BTN_DISK_NUMBER', language), callback_data=translate_key_to('BTN_DISK_NUMBER', language))],
+        [InlineKeyboardButton(translate_key_to('BTN_TRACK_NUMBER', language), callback_data=translate_key_to('BTN_TRACK_NUMBER', language))],
+        [InlineKeyboardButton(translate_key_to('BTN_BACK', language), callback_data=translate_key_to('BTN_BACK', language))],
     ]
 
     return language_button_keyboard
