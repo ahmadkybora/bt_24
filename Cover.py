@@ -793,6 +793,7 @@ def prepare_for_tracknumber(update: Update, context: CallbackContext) -> None:
 
 def handle_responses(update: Update, context: CallbackContext) -> None:
     message = update.message
+    print(message)
     message_text = digits.ar_to_fa(digits.fa_to_en(message.text))
     user_data = context.user_data
     music_path = user_data['music_path']
