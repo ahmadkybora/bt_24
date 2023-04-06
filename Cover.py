@@ -865,12 +865,12 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
     #         )
     #         logger.exception("Telegram error: %s", error)
     elif current_active_module == 'tag_editor':
-        print(current_active_module)
         if not current_tag:
             reply_message = translate_key_to(lp.ASK_WHICH_TAG, lang)
             message.reply_text(reply_message, reply_markup=tag_editor_keyboard)
         elif current_tag == 'album_art':
             reply_message = translate_key_to(lp.ASK_FOR_ALBUM_ART, lang)
+            print(reply_message)
             message.reply_text(reply_message, reply_markup=tag_editor_keyboard)
         else:
             save_text_into_tag(
