@@ -716,7 +716,7 @@ def prepare_for_artist(update: Update, context: CallbackContext) -> None:
         context.user_data['tag_editor']['current_tag'] = 'artist'
         message_text = translate_key_to(lp.ASK_FOR_ARTIST, context.user_data['language'])
 
-    update.message.reply_text(message_text)
+    update.callback_query.message.edit_text(message_text)
 
 def prepare_for_title(update: Update, context: CallbackContext) -> None:
     if len(context.user_data) == 0:
