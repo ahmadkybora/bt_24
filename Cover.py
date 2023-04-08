@@ -327,7 +327,7 @@ def handle_music_tag_editor(update: Update, context: CallbackContext) -> None:
 def handle_music_to_voice_converter(update: Update, context: CallbackContext) -> None:
     message = update.message
     context.bot.send_chat_action(
-        chat_id=update.message.chat_id,
+        chat_id=update.callback_query.message.chat_id,
         action=ChatAction.RECORD_AUDIO
     )
 
