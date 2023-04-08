@@ -1014,8 +1014,6 @@ def finish_editing_tags(update: Update, context: CallbackContext) -> None:
     new_art_path = user_data['new_art_path']
     music_tags = user_data['tag_editor']
 
-    start_over_button_keyboard = generate_start_over_keyboard(lang)
-
     if current_active_module == 'convert_video_to_gif_message':
         video_path = user_data['video_path']
         video_file = open(video_path, 'rb').read()
@@ -1182,10 +1180,14 @@ def main():
         (Filters.regex('^(🔙 Back)$') | Filters.regex('^(🔙 بازگشت)$')),
         show_module_selector)
     )
-    add_handler(MessageHandler(
-        (Filters.regex('^(🆕 New File or Link)$') | Filters.regex('^(🆕 فایل یا لینک جدید)$')),
-        start_over)
-    )
+    # add_handler(MessageHandler(
+    #     (Filters.regex('^(🆕 New File or Link)$') | Filters.regex('^(🆕 فایل یا لینک جدید)$')),
+    #     start_over)
+    # )
+
+    add_handler(CallbackQueryHandler(start_over, pattern='🆕 New File or Link'))
+    add_handler(CallbackQueryHandler(start_over, pattern='🆕 فایل یا لینک جدید'))
+
     # add_handler(MessageHandler(Filters.regex('^(🎵 تغییر تگ ها)$'),handle_music_tag_editor))
     add_handler(CallbackQueryHandler(handle_music_tag_editor, pattern='🎵 Tag Editor'))
     add_handler(CallbackQueryHandler(handle_music_tag_editor, pattern='🎵 تغییر تگ ها'))
