@@ -418,7 +418,7 @@ def handle_photo_message(update: Update, context: CallbackContext) -> None:
                                     f"{translate_key_to(lp.OR, lang).upper()} " \
                                     f"{translate_key_to(lp.CLICK_DONE_MESSAGE, lang).lower()}"
                     user_data['new_art_path'] = file_download_path
-                    message.reply_text(reply_message, reply_markup=tag_editor_keyboard)
+                    message.reply_text(reply_message, reply_markup=InlineKeyboardMarkup(tag_editor_keyboard))
                 except (ValueError, BaseException):
                     message.reply_text(translate_key_to(lp.ERR_ON_DOWNLOAD_AUDIO_MESSAGE, lang))
                     logger.error(
