@@ -867,10 +867,10 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
     elif current_active_module == 'tag_editor':
         if not current_tag:
             reply_message = translate_key_to(lp.ASK_WHICH_TAG, lang)
-            message.reply_text(reply_message, reply_markup=tag_editor_keyboard)
+            message.reply_text(reply_message, reply_markup=InlineKeyboardMarkup(tag_editor_keyboard))
         elif current_tag == 'album_art':
             reply_message = translate_key_to(lp.ASK_FOR_ALBUM_ART, lang)
-            message.reply_text(reply_message, reply_markup=tag_editor_keyboard)
+            message.reply_text(reply_message, reply_markup=InlineKeyboardMarkup(tag_editor_keyboard))
         else:
             save_text_into_tag(
                 value=message_text,
