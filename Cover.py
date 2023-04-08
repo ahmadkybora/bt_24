@@ -346,7 +346,7 @@ def handle_music_to_voice_converter(update: Update, context: CallbackContext) ->
     start_over_button_keyboard = generate_start_over_keyboard(lang)
 
     context.bot.send_chat_action(
-        chat_id=update.message.chat_id,
+        chat_id=update.callback_query.message.chat_id,
         action=ChatAction.UPLOAD_AUDIO
     )
 
@@ -357,13 +357,13 @@ def handle_music_to_voice_converter(update: Update, context: CallbackContext) ->
                 duration=user_data['music_duration'],
                 chat_id=message.chat_id,
                 caption=f"🆔 {BOT_USERNAME}",
-                reply_markup=start_over_button_keyboard,
+                reply_markup=InlineKeyboardMarkup(start_over_button_keyboard),
                 reply_to_message_id=user_data['music_message_id']
             )
     except TelegramError as error:
         message.reply_text(
             translate_key_to(lp.ERR_ON_UPLOADING, lang),
-            reply_markup=start_over_button_keyboard
+            reply_markup=InlineKeyboardMarkup(start_over_button_keyboard)
         )
         logger.exception("Telegram error: %s", error)
 
