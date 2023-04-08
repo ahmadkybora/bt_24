@@ -1176,10 +1176,14 @@ def main():
     ############################
     # Module Selector Handlers #
     ############################
-    add_handler(MessageHandler(
-        (Filters.regex('^(🔙 Back)$') | Filters.regex('^(🔙 بازگشت)$')),
-        show_module_selector)
-    )
+    # add_handler(MessageHandler(
+    #     (Filters.regex('^(🔙 Back)$') | Filters.regex('^(🔙 بازگشت)$')),
+    #     show_module_selector)
+    # )
+
+    add_handler(CallbackQueryHandler(start_over, pattern='🔙 Back'))
+    add_handler(CallbackQueryHandler(start_over, pattern='🔙 بازگشت'))
+
     # add_handler(MessageHandler(
     #     (Filters.regex('^(🆕 New File or Link)$') | Filters.regex('^(🆕 فایل یا لینک جدید)$')),
     #     start_over)
