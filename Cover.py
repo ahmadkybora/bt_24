@@ -1196,18 +1196,27 @@ def main():
     add_handler(CallbackQueryHandler(handle_music_tag_editor, pattern='🎵 Tag Editor'))
     add_handler(CallbackQueryHandler(handle_music_tag_editor, pattern='🎵 تغییر تگ ها'))
 
-    add_handler(MessageHandler(
-        (Filters.regex('^(🗣 Music to Voice Converter)$') | Filters.regex('^(🗣 تبدیل به پیام صوتی)$')),
-        handle_music_to_voice_converter)
-    )
-    add_handler(MessageHandler(
-        (Filters.regex('^(✂️ Music Cutter)$') | Filters.regex('^(✂️ بریدن آهنگ)$')),
-        handle_music_cutter)
-    )
-    add_handler(MessageHandler(
-        (Filters.regex('^(🎙 Bitrate Changer)$') | Filters.regex('^(🎙 تغییر بیت ریت)$')),
-        handle_music_bitrate_changer)
-    )
+    add_handler(CallbackQueryHandler(handle_music_to_voice_converter, pattern='🗣 Music to Voice Converter'))
+    add_handler(CallbackQueryHandler(handle_music_to_voice_converter, pattern='🗣 تبدیل به پیام صوتی'))
+
+    add_handler(CallbackQueryHandler(handle_music_cutter, pattern='✂️ Music Cutter'))
+    add_handler(CallbackQueryHandler(handle_music_cutter, pattern='✂️ بریدن آهنگ'))
+
+    add_handler(CallbackQueryHandler(handle_music_bitrate_changer, pattern='🎙 Bitrate Changer'))
+    add_handler(CallbackQueryHandler(handle_music_bitrate_changer, pattern='🎙 تغییر بیت ریت'))
+
+    # add_handler(MessageHandler(
+    #     (Filters.regex('^(🗣 Music to Voice Converter)$') | Filters.regex('^(🗣 تبدیل به پیام صوتی)$')),
+    #     handle_music_to_voice_converter)
+    # )
+    # add_handler(MessageHandler(
+    #     (Filters.regex('^(✂️ Music Cutter)$') | Filters.regex('^(✂️ بریدن آهنگ)$')),
+    #     handle_music_cutter)
+    # )
+    # add_handler(MessageHandler(
+    #     (Filters.regex('^(🎙 Bitrate Changer)$') | Filters.regex('^(🎙 تغییر بیت ریت)$')),
+    #     handle_music_bitrate_changer)
+    # )
 
     #######################
     # Tag Editor Handlers #
