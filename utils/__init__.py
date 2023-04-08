@@ -298,15 +298,21 @@ def generate_start_over_keyboard(language: str) -> ReplyKeyboardMarkup:
     **Returns:**
      ReplyKeyboardMarkup instance
     """
-    return (
-        ReplyKeyboardMarkup(
-            [
-                [translate_key_to('BTN_NEW_FILE', language)],
-            ],
-            resize_keyboard=True,
-            one_time_keyboard=True,
-        )
-    )
+    # return (
+    #     ReplyKeyboardMarkup(
+    #         [
+    #             [translate_key_to('BTN_NEW_FILE', language)],
+    #         ],
+    #         resize_keyboard=True,
+    #         one_time_keyboard=True,
+    #     )
+    # )
+
+    button_keyboard = [
+        [InlineKeyboardButton(translate_key_to('BTN_NEW_FILE', language), callback_data=translate_key_to('BTN_NEW_FILE', language))]
+    ]
+
+    return button_keyboard
 
 
 def generate_module_selector_keyboard(language: str) -> ReplyKeyboardMarkup:
@@ -319,14 +325,14 @@ def generate_module_selector_keyboard(language: str) -> ReplyKeyboardMarkup:
     **Returns:**
      ReplyKeyboardMarkup instance
     """
-    language_button_keyboard = [
+    button_keyboard = [
         [InlineKeyboardButton(translate_key_to('BTN_TAG_EDITOR', language), callback_data=translate_key_to('BTN_TAG_EDITOR', language))],
         [InlineKeyboardButton(translate_key_to('BTN_MUSIC_TO_VOICE_CONVERTER', language), callback_data=translate_key_to('BTN_MUSIC_TO_VOICE_CONVERTER', language))],
         [InlineKeyboardButton(translate_key_to('BTN_MUSIC_CUTTER', language), callback_data=translate_key_to('BTN_MUSIC_CUTTER', language))],
         [InlineKeyboardButton(translate_key_to('BTN_BITRATE_CHANGER', language), callback_data=translate_key_to('BTN_BITRATE_CHANGER', language))],
     ]
 
-    return language_button_keyboard
+    return button_keyboard
 
     # return (
     #     ReplyKeyboardMarkup(
@@ -400,7 +406,7 @@ def generate_tag_editor_keyboard(language: str) -> ReplyKeyboardMarkup:
     **Returns:**
      ReplyKeyboardMarkup instance
     """
-    language_button_keyboard = [
+    button_keyboard = [
         [InlineKeyboardButton(translate_key_to('BTN_ARTIST', language), callback_data=translate_key_to('BTN_ARTIST', language))],
         [InlineKeyboardButton(translate_key_to('BTN_TITLE', language), callback_data=translate_key_to('BTN_TITLE', language))],
         [InlineKeyboardButton(translate_key_to('BTN_ALBUM', language), callback_data=translate_key_to('BTN_ALBUM', language))],
@@ -412,7 +418,7 @@ def generate_tag_editor_keyboard(language: str) -> ReplyKeyboardMarkup:
         [InlineKeyboardButton(translate_key_to('BTN_BACK', language), callback_data=translate_key_to('BTN_BACK', language))],
     ]
 
-    return language_button_keyboard
+    return button_keyboard
 
     # return (
     #     ReplyKeyboardMarkup(

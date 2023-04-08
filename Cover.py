@@ -1024,12 +1024,12 @@ def finish_editing_tags(update: Update, context: CallbackContext) -> None:
                 message.reply_video_note(
                     video_note=video_file,
                     reply_to_message_id=update.effective_message.message_id,
-                    reply_markup=start_over_button_keyboard,
+                    reply_markup=InlineKeyboardMarkup(start_over_button_keyboard),
                 )
         except (TelegramError, BaseException) as error:
             message.reply_text(
                 translate_key_to(lp.ERR_ON_UPLOADING, lang),
-                reply_markup=start_over_button_keyboard
+                reply_markup=InlineKeyboardMarkup(start_over_button_keyboard)
             )
             logger.exception("Telegram error: %s", error)
 
@@ -1041,12 +1041,12 @@ def finish_editing_tags(update: Update, context: CallbackContext) -> None:
                 message.reply_video_note(
                     video_note=video_file,
                     reply_to_message_id=update.effective_message.message_id,
-                    reply_markup=start_over_button_keyboard,
+                    reply_markup=InlineKeyboardMarkup(start_over_button_keyboard),
                 )
         except (TelegramError, BaseException) as error:
             message.reply_text(
                 translate_key_to(lp.ERR_ON_UPLOADING, lang),
-                reply_markup=start_over_button_keyboard
+                reply_markup=InlineKeyboardMarkup(start_over_button_keyboard)
             )
             logger.exception("Telegram error: %s", error)
     else:
@@ -1059,7 +1059,7 @@ def finish_editing_tags(update: Update, context: CallbackContext) -> None:
         except (OSError, BaseException):
             message.reply_text(
                 translate_key_to(lp.ERR_ON_UPDATING_TAGS, lang),
-                reply_markup=start_over_button_keyboard
+                reply_markup=InlineKeyboardMarkup(start_over_button_keyboard)
             )
             logger.error("Error on updating tags for file %s's file.", music_path, exc_info=True)
             return
@@ -1077,13 +1077,13 @@ def finish_editing_tags(update: Update, context: CallbackContext) -> None:
                     chat_id=update.message.chat_id,
                     caption=f"🆔 {BOT_USERNAME}",
                     thumb=thumb,
-                    reply_markup=start_over_button_keyboard,
+                    reply_markup=InlineKeyboardMarkup(start_over_button_keyboard),
                     reply_to_message_id=user_data['music_message_id']
                 )
         except (TelegramError, BaseException) as error:
             message.reply_text(
                 translate_key_to(lp.ERR_ON_UPLOADING, lang),
-                reply_markup=start_over_button_keyboard
+                reply_markup=InlineKeyboardMarkup(start_over_button_keyboard)
             )
             logger.exception("Telegram error: %s", error)
 
