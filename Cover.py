@@ -732,9 +732,9 @@ def throw_not_implemented(update: Update, context: CallbackContext) -> None:
 
     back_button_keyboard = generate_back_button_keyboard(lang)
 
-    update.message.reply_text(
+    update.callback_query.message.edit_text(
         translate_key_to(lp.ERR_NOT_IMPLEMENTED, lang),
-        reply_markup=back_button_keyboard
+        reply_markup=InlineKeyboardMarkup(back_button_keyboard)
     )
 
 def prepare_for_album(update: Update, context: CallbackContext) -> None:

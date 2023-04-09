@@ -277,15 +277,21 @@ def generate_back_button_keyboard(language: str) -> ReplyKeyboardMarkup:
     **Returns:**
      ReplyKeyboardMarkup instance
     """
-    return (
-        ReplyKeyboardMarkup(
-            [
-                [translate_key_to('BTN_BACK', language)],
-            ],
-            resize_keyboard=True,
-            one_time_keyboard=True,
-        )
-    )
+    # return (
+    #     ReplyKeyboardMarkup(
+    #         [
+    #             [translate_key_to('BTN_BACK', language)],
+    #         ],
+    #         resize_keyboard=True,
+    #         one_time_keyboard=True,
+    #     )
+    # )
+
+    button_keyboard = [
+        [InlineKeyboardButton(translate_key_to('BTN_BACK', language), callback_data=translate_key_to('BTN_BACK', language))]
+    ]
+
+    return button_keyboard
 
 
 def generate_start_over_keyboard(language: str) -> ReplyKeyboardMarkup:
