@@ -380,9 +380,9 @@ def handle_music_cutter(update: Update, context: CallbackContext) -> None:
     music_duration = convert_seconds_to_human_readable_form(user_data['music_duration'])
 
     # TODO: Send back the length of the music
-    update.message.reply_text(
+    update.callback_query.message.edit_text(
         f"{translate_key_to(lp.MUSIC_CUTTER_HELP, lang).format(music_duration)}\n",
-        reply_markup=back_button_keyboard
+        reply_markup=InlineKeyboardMarkup(back_button_keyboard)
     )
 
 def handle_music_bitrate_changer(update: Update, context: CallbackContext) -> None:
