@@ -1,0 +1,1 @@
+from Cover import main
