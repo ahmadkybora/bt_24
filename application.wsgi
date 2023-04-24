@@ -1,2 +1,2 @@
-from Cover import main
-application = main()
+import sys
+sys.path.insert(0, '/var/www/bt_24')
