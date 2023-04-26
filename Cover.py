@@ -49,7 +49,8 @@ Model.set_connection_resolver(db)
 ####################
 # Global variables #
 ####################
-BOT_TOKEN = os.getenv("BOT_TOKEN")
+#BOT_TOKEN = os.getenv("BOT_TOKEN")
+BOT_TOKEN = "378545358:AAGq1vbgle52cwGeorS0ZW1h7TGlUjTfcvU"
 BOT_USERNAME = os.getenv("BOT_USERNAME")
 
 
