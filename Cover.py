@@ -1127,6 +1127,7 @@ def ignore_file(update: Update, context: CallbackContext) -> None:
     )
 
 def main():
+    print(1)
     """
     Start Bot
     """
