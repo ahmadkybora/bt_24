@@ -49,8 +49,8 @@ Model.set_connection_resolver(db)
 ####################
 # Global variables #
 ####################
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-#BOT_TOKEN = "378545358:AAGq1vbgle52cwGeorS0ZW1h7TGlUjTfcvU"
+#BOT_TOKEN = os.getenv("BOT_TOKEN")
+BOT_TOKEN = "378545358:AAGq1vbgle52cwGeorS0ZW1h7TGlUjTfcvU"
 BOT_USERNAME = os.getenv("BOT_USERNAME")
 
 
@@ -62,10 +62,10 @@ now = re.sub(':', '_', str(now))
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-output_file_handler = logging.FileHandler(f"logs/{now}.log", encoding='UTF-8')
+# output_file_handler = logging.FileHandler(f"logs/{now}.log", encoding='UTF-8')
 stdout_handler = logging.StreamHandler(sys.stdout)
 
-logger.addHandler(output_file_handler)
+# logger.addHandler(output_file_handler)
 logger.addHandler(stdout_handler)
 
 
