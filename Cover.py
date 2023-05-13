@@ -1107,7 +1107,7 @@ def set_language(update: Update, context: CallbackContext) -> None:
     lang = update.callback_query.data.lower()
     user_data = context.user_data
     user_id = update.effective_user.id
-
+    print(user_data)
     if "english" in lang:
         user_data['language'] = 'en'
     elif "persian" in lang:
