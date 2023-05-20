@@ -78,7 +78,7 @@ def command_start(update: Update, context: CallbackContext) -> None:
     username = update.effective_user.username
 
     reset_user_data_context(context)
-    print(1)
+    print(2)
     user = User.where('user_id', '=', user_id).first()
 
     update.message.reply_text(
