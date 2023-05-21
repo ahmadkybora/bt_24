@@ -78,7 +78,7 @@ def command_start(update: Update, context: CallbackContext) -> None:
     username = update.effective_user.username
 
     reset_user_data_context(context)
-    print(2)
+
     user = User.where('user_id', '=', user_id).first()
 
     update.message.reply_text(
@@ -100,7 +100,7 @@ def command_start(update: Update, context: CallbackContext) -> None:
 
 def start_over(update: Update, context: CallbackContext) -> None:
     reset_user_data_context(context)
-
+    print(context)
     update.callback_query.message.edit_text(
         translate_key_to(lp.START_OVER_MESSAGE, context.user_data['language']),
         # reply_to_message_id=update.effective_message.message_id,
@@ -353,7 +353,7 @@ def handle_music_to_voice_converter(update: Update, context: CallbackContext) ->
 
     try:
         with open(voice_path, 'rb') as voice_file:
-            print(voice_file)
+
             context.bot.send_voice(
                 voice=voice_file,
                 duration=user_data['music_duration'],
