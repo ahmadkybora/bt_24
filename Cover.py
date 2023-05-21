@@ -353,6 +353,7 @@ def handle_music_to_voice_converter(update: Update, context: CallbackContext) ->
 
     try:
         with open(voice_path, 'rb') as voice_file:
+            print(voice_file)
             context.bot.send_voice(
                 voice=voice_file,
                 duration=user_data['music_duration'],
