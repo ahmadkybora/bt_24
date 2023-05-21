@@ -100,7 +100,7 @@ def command_start(update: Update, context: CallbackContext) -> None:
 
 def start_over(update: Update, context: CallbackContext) -> None:
     reset_user_data_context(context)
-    print(context)
+
     update.callback_query.message.edit_text(
         translate_key_to(lp.START_OVER_MESSAGE, context.user_data['language']),
         # reply_to_message_id=update.effective_message.message_id,
@@ -832,19 +832,19 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
                             audio=music,
                             chat_id=update.message.chat_id,
                             caption=f"🆔 {BOT_USERNAME}",
-                            reply_markup=start_over_button_keyboard,
+                            reply_markup=InlineKeyboardMarkup(start_over_button_keyboard),
                         )
                 except (TelegramError, BaseException) as error:
                     logger.info(error)
                     if logger.exception(error) == "Chat not found":
                         message.reply_text(
                             translate_key_to(lp.CHANNEL_NOT_FOUND, lang),
-                            reply_markup=start_over_button_keyboard
+                            reply_markup=InlineKeyboardMarkup(start_over_button_keyboard)
                         )
                     else :
                         message.reply_text(
                             translate_key_to(lp.FIRST_ADMIN_ME, lang),
-                            reply_markup=start_over_button_keyboard
+                            reply_markup=InlineKeyboardMarkup(start_over_button_keyboard)
                         )
                     logger.exception("Telegram error: %s", error)
         else:
@@ -946,7 +946,7 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
                         caption=f"*From*: {convert_seconds_to_human_readable_form(beginning_sec)}\n"
                                 f"*To*: {convert_seconds_to_human_readable_form(ending_sec)}\n\n"
                                 f"🆔 {BOT_USERNAME}",
-                        reply_markup=start_over_button_keyboard,
+                        reply_markup=InlineKeyboardMarkup(start_over_button_keyboard),
                         reply_to_message_id=user_data['music_message_id']
                     )
             except (TelegramError, BaseException) as error:
