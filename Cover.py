@@ -99,7 +99,9 @@ def command_start(update: Update, context: CallbackContext) -> None:
         logger.info("A user with id %s has been started to use the bot.", user_id)
 
 def start_over(update: Update, context: CallbackContext) -> None:
+    print(context)
     reset_user_data_context(context)
+    print(context)
 
     update.callback_query.message.edit_text(
         translate_key_to(lp.START_OVER_MESSAGE, context.user_data['language']),
@@ -952,7 +954,7 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
             except (TelegramError, BaseException) as error:
                 message.reply_text(
                     translate_key_to(lp.ERR_ON_UPLOADING, lang),
-                    reply_markup=start_over_button_keyboard
+                    reply_markup=InlineKeyboardMarkup(start_over_button_keyboard)
                 )
                 logger.exception("Telegram error: %s", error)
 
