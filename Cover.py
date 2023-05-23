@@ -1191,7 +1191,7 @@ def main():
     #     start_over)
     # )
 
-    add_handler(CallbackQueryHandler(start_over, pattern='🆕 New File or Link'))
+    # add_handler(CallbackQueryHandler(start_over, pattern='🆕 New File or Link'))
     add_handler(CallbackQueryHandler(start_over, pattern='🆕 فایل یا لینک جدید'))
 
     # add_handler(MessageHandler(Filters.regex('^(🎵 تغییر تگ ها)$'),handle_music_tag_editor))
