@@ -1141,7 +1141,7 @@ def main():
     # Users Command Handlers #
     ##########################
     add_handler(CommandHandler('start', command_start))
-    add_handler(CommandHandler('new', start_over))
+    #add_handler(CommandHandler('new', start_over))
     add_handler(CommandHandler('language', show_language_keyboard))
     add_handler(CommandHandler('help', command_help))
     add_handler(CommandHandler('about', command_about))
