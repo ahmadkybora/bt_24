@@ -359,7 +359,7 @@ def handle_music_to_voice_converter(update: Update, context: CallbackContext) ->
                 duration=user_data['music_duration'],
                 chat_id=update.callback_query.message.chat_id,
                 caption=f"🆔 {BOT_USERNAME}",
-                reply_markup=InlineKeyboardMarkup(start_over_button_keyboard),
+                reply_markup=start_over_button_keyboard,
                 reply_to_message_id=user_data['music_message_id']
             )
     except TelegramError as error:
@@ -1183,15 +1183,15 @@ def main():
     #     show_module_selector)
     # )
 
-    #add_handler(CallbackQueryHandler(start_over, pattern='🔙 Back'))
-    #add_handler(CallbackQueryHandler(start_over, pattern='🔙 بازگشت'))
+    add_handler(CallbackQueryHandler(start_over, pattern='🔙 Back'))
+    add_handler(CallbackQueryHandler(start_over, pattern='🔙 بازگشت'))
 
     # add_handler(MessageHandler(
     #     (Filters.regex('^(🆕 New File or Link)$') | Filters.regex('^(🆕 فایل یا لینک جدید)$')),
     #     start_over)
     # )
 
-    # add_handler(CallbackQueryHandler(start_over, pattern='🆕 New File or Link'))
+    add_handler(CallbackQueryHandler(start_over, pattern='🆕 New File or Link'))
     add_handler(CallbackQueryHandler(start_over, pattern='🆕 فایل یا لینک جدید'))
 
     # add_handler(MessageHandler(Filters.regex('^(🎵 تغییر تگ ها)$'),handle_music_tag_editor))
