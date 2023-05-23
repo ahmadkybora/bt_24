@@ -1183,8 +1183,8 @@ def main():
     #     show_module_selector)
     # )
 
-    add_handler(CallbackQueryHandler(start_over, pattern='🔙 Back'))
-    add_handler(CallbackQueryHandler(start_over, pattern='🔙 بازگشت'))
+    #add_handler(CallbackQueryHandler(start_over, pattern='🔙 Back'))
+    #add_handler(CallbackQueryHandler(start_over, pattern='🔙 بازگشت'))
 
     # add_handler(MessageHandler(
     #     (Filters.regex('^(🆕 New File or Link)$') | Filters.regex('^(🆕 فایل یا لینک جدید)$')),
