@@ -99,6 +99,8 @@ def command_start(update: Update, context: CallbackContext) -> None:
         logger.info("A user with id %s has been started to use the bot.", user_id)
 
 def start_over(update: Update, context: CallbackContext) -> None:
+    lang = update.callback_query.data.lower()
+    print(lang)
     reset_user_data_context(context)
 
     update.callback_query.message.edit_text(
@@ -359,7 +361,7 @@ def handle_music_to_voice_converter(update: Update, context: CallbackContext) ->
                 duration=user_data['music_duration'],
                 chat_id=update.callback_query.message.chat_id,
                 caption=f"🆔 {BOT_USERNAME}",
-                reply_markup=start_over_button_keyboard,
+                reply_markup=InlineKeyboardMarkup(start_over_button_keyboard),
                 reply_to_message_id=user_data['music_message_id']
             )
     except TelegramError as error:
