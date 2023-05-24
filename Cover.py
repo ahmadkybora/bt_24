@@ -101,10 +101,11 @@ def command_start(update: Update, context: CallbackContext) -> None:
 def start_over(update: Update, context: CallbackContext) -> None:
     lang = update.callback_query.data.lower()
     print(lang)
+    print(context.user_data['language'])
     reset_user_data_context(context)
 
     update.callback_query.message.edit_text(
-        translate_key_to(lp.START_OVER_MESSAGE, context.user_data['language']),
+        translate_key_to(lp.START_OVER_MESSAGE, lang),
         # reply_to_message_id=update.effective_message.message_id,
         # reply_markup=ReplyKeyboardRemove()
     )
@@ -355,7 +356,7 @@ def handle_music_to_voice_converter(update: Update, context: CallbackContext) ->
 
     try:
         with open(voice_path, 'rb') as voice_file:
-            print(1)
+
             context.bot.send_voice(
                 voice=voice_file,
                 duration=user_data['music_duration'],
