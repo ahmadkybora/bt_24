@@ -140,7 +140,7 @@ def handle_music_message(update: Update, context: CallbackContext) -> None:
     if music_duration >= 3600 and music_file_size > 48000000:
         message.reply_text(
             translate_key_to(lp.ERR_TOO_LARGE_FILE, language),
-            reply_markup=generate_start_over_keyboard(language)
+            reply_markup=InlineKeyboardMarkup(generate_start_over_keyboard(language))
         )
         return
 
@@ -166,7 +166,7 @@ def handle_music_message(update: Update, context: CallbackContext) -> None:
     except ValueError:
         message.reply_text(
             translate_key_to(lp.ERR_ON_DOWNLOAD_AUDIO_MESSAGE, language),
-            reply_markup=generate_start_over_keyboard(language)
+            reply_markup=InlineKeyboardMarkup((generate_start_over_keyboard(language)))
         )
         logger.error("Error on downloading %s's file. File type: Audio", user_id, exc_info=True)
         return
@@ -176,7 +176,7 @@ def handle_music_message(update: Update, context: CallbackContext) -> None:
     except (OSError, NotImplementedError):
         message.reply_text(
             translate_key_to(lp.ERR_ON_READING_TAGS, language),
-            reply_markup=generate_start_over_keyboard(language)
+            reply_markup=InlineKeyboardMarkup(generate_start_over_keyboard(language))
         )
         logger.error(
             "Error on reading the tags %s's file. File path: %s",
@@ -474,7 +474,7 @@ def handle_video_message(update: Update, context: CallbackContext) -> None:
     if video_duration >= 3600 and video_file_size > 48000000:
         message.reply_text(
             translate_key_to(lp.ERR_TOO_LARGE_FILE, language),
-            reply_markup=generate_start_over_keyboard(language)
+            reply_markup=InlineKeyboardMarkup((generate_start_over_keyboard(language)))
         )
         return
 
@@ -500,7 +500,7 @@ def handle_video_message(update: Update, context: CallbackContext) -> None:
     except ValueError:
         message.reply_text(
             translate_key_to(lp.ERR_ON_DOWNLOAD_VIDEO_MESSAGE, language),
-            reply_markup=generate_start_over_keyboard(language)
+            reply_markup=InlineKeyboardMarkup((generate_start_over_keyboard(language)))
         )
         logger.error("Error on downloading %s's file. File type: Video", user_id, exc_info=True)
         return
@@ -613,7 +613,7 @@ def handle_voice_message(update: Update, context: CallbackContext) -> None:
     if voice_duration >= 3600 and voice_file_size > 48000000:
         message.reply_text(
             translate_key_to(lp.ERR_TOO_LARGE_FILE, language),
-            reply_markup=generate_start_over_keyboard(language)
+            reply_markup=InlineKeyboardMarkup(generate_start_over_keyboard(language))
         )
         return
 
@@ -639,7 +639,7 @@ def handle_voice_message(update: Update, context: CallbackContext) -> None:
     except ValueError:
         message.reply_text(
             translate_key_to(lp.ERR_ON_DOWNLOAD_AUDIO_MESSAGE, language),
-            reply_markup=generate_start_over_keyboard(language)
+            reply_markup=InlineKeyboardMarkup(generate_start_over_keyboard(language))
         )
         logger.error("Error on downloading %s's file. File type: Audio", user_id, exc_info=True)
         return
@@ -690,13 +690,13 @@ def handle_convert_voice_message(update: Update, context: CallbackContext) -> No
                 duration=user_data['music_duration'],
                 chat_id=message.chat_id,
                 caption=f"🆔 {BOT_USERNAME}",
-                reply_markup=start_over_button_keyboard,
+                reply_markup=InlineKeyboardMarkup(start_over_button_keyboard),
                 reply_to_message_id=user_data['music_message_id']
             )
     except TelegramError as error:
         message.reply_text(
             translate_key_to(lp.ERR_ON_UPLOADING, lang),
-            reply_markup=start_over_button_keyboard
+            reply_markup=InlineKeyboardMarkup(start_over_button_keyboard)
         )
         logger.exception("Telegram error: %s", error)
 
