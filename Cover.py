@@ -99,13 +99,13 @@ def command_start(update: Update, context: CallbackContext) -> None:
         logger.info("A user with id %s has been started to use the bot.", user_id)
 
 def start_over(update: Update, context: CallbackContext) -> None:
-    lang = update.callback_query.data.lower()
-    print(lang)
-    print(context.user_data['language'])
+    # lang = update.callback_query.data.lower()
+    # print(lang)
+    # print(context.user_data['language'])
     reset_user_data_context(context)
 
     update.callback_query.message.edit_text(
-        translate_key_to(lp.START_OVER_MESSAGE, lang),
+        translate_key_to(lp.START_OVER_MESSAGE, context.user_data['language']),
         # reply_to_message_id=update.effective_message.message_id,
         # reply_markup=ReplyKeyboardRemove()
     )
@@ -318,7 +318,7 @@ def handle_music_tag_editor(update: Update, context: CallbackContext) -> None:
                 photo=art_file,
                 caption=generate_music_info(tag_editor_context).format(f"\n🆔 {BOT_USERNAME}"),
                 reply_to_message_id=update.effective_message.message_id,
-                reply_markup=tag_editor_keyboard,
+                reply_markup=InlineKeyboardMarkup(tag_editor_keyboard),
                 parse_mode='Markdown'
             )
     else:
