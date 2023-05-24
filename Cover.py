@@ -363,7 +363,8 @@ def handle_music_to_voice_converter(update: Update, context: CallbackContext) ->
                 chat_id=update.callback_query.message.chat_id,
                 caption=f"🆔 {BOT_USERNAME}",
                 reply_markup=InlineKeyboardMarkup(start_over_button_keyboard),
-                reply_to_message_id=user_data['music_message_id']
+                # reply_to_message_id=user_data['music_message_id']
+                reply_to_message_id=update.effective_message.message_id,
             )
     except TelegramError as error:
         message.reply_text(
