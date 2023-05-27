@@ -1238,8 +1238,8 @@ def main():
     add_handler(CallbackQueryHandler(prepare_for_album_art, pattern='🖼 عکس آلبوم'))
     add_handler(CallbackQueryHandler(prepare_for_album_art, pattern='🖼 Album Art'))
 
-    add_handler(CallbackQueryHandler(prepare_for_album_art, pattern='📅 سال'))
-    add_handler(CallbackQueryHandler(prepare_for_album_art, pattern='📅 Year'))
+    add_handler(CallbackQueryHandler(prepare_for_year, pattern='📅 سال'))
+    add_handler(CallbackQueryHandler(prepare_for_year, pattern='📅 Year'))
 
     add_handler(CallbackQueryHandler(prepare_for_disknumber, pattern='💿  شماره دیسک'))
     add_handler(CallbackQueryHandler(prepare_for_disknumber, pattern='💿 Disk Number'))
