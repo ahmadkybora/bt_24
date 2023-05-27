@@ -99,14 +99,10 @@ def command_start(update: Update, context: CallbackContext) -> None:
         logger.info("A user with id %s has been started to use the bot.", user_id)
 
 def start_over(update: Update, context: CallbackContext) -> None:
-    # lang = update.callback_query.data.lower()
-    # print(lang)
-    # print(context.user_data['language'])
     reset_user_data_context(context)
-    # print(update.callback_query.message.chat_id)
+
     update.callback_query.message.edit_text(
         translate_key_to(lp.START_OVER_MESSAGE, context.user_data['language']),
-        # message_id=update.effective_message.message_id
         # reply_to_message_id=update.effective_message.message_id,
         # reply_markup=ReplyKeyboardRemove()
     )
