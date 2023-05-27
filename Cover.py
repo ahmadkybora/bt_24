@@ -103,10 +103,10 @@ def start_over(update: Update, context: CallbackContext) -> None:
     # print(lang)
     # print(context.user_data['language'])
     reset_user_data_context(context)
-    print(update.callback_query.message.chat_id)
+    # print(update.callback_query.message.chat_id)
     update.callback_query.message.edit_text(
         translate_key_to(lp.START_OVER_MESSAGE, context.user_data['language']),
-        # reply_to_message_id=update.effective_message.message_id,
+        reply_to_message_id=update.effective_message.message_id,
         # reply_markup=ReplyKeyboardRemove()
     )
 
