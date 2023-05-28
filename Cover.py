@@ -892,7 +892,7 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
             reply_message = translate_key_to(lp.ERR_MALFORMED_RANGE, lang).format(
                 translate_key_to(lp.MUSIC_CUTTER_HELP, lang),
             )
-            message.reply_text(reply_message, reply_markup=back_button_keyboard)
+            message.reply_text(reply_message, reply_markup=InlineKeyboardMarkup(back_button_keyboard))
             return
         music_path_cut = f"{music_path}_cut.mp3"
         music_duration = user_data['music_duration']
