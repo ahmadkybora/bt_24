@@ -897,6 +897,7 @@ def handle_responses(update: Update, context: CallbackContext) -> None:
         music_path_cut = f"{music_path}_cut.mp3"
         music_duration = user_data['music_duration']
 
+        print(music_duration)
         if beginning_sec > music_duration or ending_sec > music_duration:
             reply_message = translate_key_to(lp.ERR_OUT_OF_RANGE, lang).format(
                 convert_seconds_to_human_readable_form(music_duration))
