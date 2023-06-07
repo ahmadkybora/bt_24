@@ -440,7 +440,7 @@ def show_module_selector_video(update: Update, context: CallbackContext) -> None
 
     module_selector_keyboard = generate_module_selector_video_keyboard(lang)
 
-    update.callback_query.message.edit_text(
+    update.message.reply_text(
         translate_key_to(lp.ASK_WHICH_MODULE, lang),
         reply_to_message_id=update.effective_message.message_id,
         reply_markup=InlineKeyboardMarkup(module_selector_keyboard)
@@ -476,8 +476,7 @@ def handle_video_message(update: Update, context: CallbackContext) -> None:
         return
 
     context.bot.send_chat_action(
-        chat_id=update.callback_query.message.chat_id,
-        # chat_id=message.chat_id,
+        chat_id=message.chat_id,
         action=ChatAction.TYPING
     )
 
