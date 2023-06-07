@@ -476,7 +476,8 @@ def handle_video_message(update: Update, context: CallbackContext) -> None:
         return
 
     context.bot.send_chat_action(
-        chat_id=message.chat_id,
+        chat_id=update.callback_query.message.chat_id,
+        # chat_id=message.chat_id,
         action=ChatAction.TYPING
     )
 
