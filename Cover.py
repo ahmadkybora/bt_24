@@ -540,7 +540,7 @@ def handle_convert_video_message(update: Update, context: CallbackContext) -> No
                             f"{translate_key_to(lp.CLICK_DONE_MESSAGE, lang).lower()}"
             user_data['video_path'] = video_path
             # user_data['convert_video_to_circle'] = True
-            message.reply_text(reply_message, reply_markup=tag_editor_keyboard)
+            update.callback_query.message.edit_text(reply_message, reply_markup=InlineKeyboardMarkup(tag_editor_keyboard))
         except (ValueError, BaseException):
             message.reply_text(translate_key_to(lp.ERR_ON_DOWNLOAD_AUDIO_MESSAGE, lang))
             logger.error(
@@ -550,10 +550,10 @@ def handle_convert_video_message(update: Update, context: CallbackContext) -> No
             )
             return
     else:
-        message.reply_text(
+        update.callback_query.message.edit_text(
             generate_music_info(tag_editor_context).format(f"\n🆔 {BOT_USERNAME}"),
             reply_to_message_id=update.effective_message.message_id,
-            reply_markup=tag_editor_keyboard
+            reply_markup=InlineKeyboardMarkup(tag_editor_keyboard)
         )
 
 def handle_convert_video_to_gif_message(update: Update, context: CallbackContext) -> None:
@@ -580,7 +580,7 @@ def handle_convert_video_to_gif_message(update: Update, context: CallbackContext
                             f"{translate_key_to(lp.CLICK_DONE_MESSAGE, lang).lower()}"
             user_data['video_path'] = video_path
             # user_data['convert_video_to_gif'] = True
-            message.reply_text(reply_message, reply_markup=tag_editor_keyboard)
+            update.callback_query.message.edit_text(reply_message, reply_markup=InlineKeyboardMarkup(tag_editor_keyboard))
         except (ValueError, BaseException):
             message.reply_text(translate_key_to(lp.ERR_ON_DOWNLOAD_AUDIO_MESSAGE, lang))
             logger.error(
@@ -590,10 +590,10 @@ def handle_convert_video_to_gif_message(update: Update, context: CallbackContext
             )
             return
     else:
-        message.reply_text(
+        update.callback_query.message.edit_text(
             generate_music_info(tag_editor_context).format(f"\n🆔 {BOT_USERNAME}"),
             reply_to_message_id=update.effective_message.message_id,
-            reply_markup=tag_editor_keyboard
+            reply_markup=InlineKeyboardMarkup(tag_editor_keyboard)
         )
 
 def handle_voice_message(update: Update, context: CallbackContext) -> None:
@@ -1284,14 +1284,20 @@ def main():
     #######################
     # Convert video #
     #######################
-    add_handler(MessageHandler(
-        (Filters.regex('^(🎥 convert to circular video)$') | Filters.regex('^(🎥 تبدیل به ویدیو دایره‌ای)$')),
-        handle_convert_video_message)
-    )
-    add_handler(MessageHandler(
-        Filters.regex('^(📷 convert video to gif)$') | Filters.regex('^(📷 تبدیل ویدیو به گیف)$'),
-        handle_convert_video_to_gif_message)
-    )
+    add_handler(CallbackQueryHandler(handle_convert_video_message, pattern='🎥 تبدیل به ویدیو دایره‌ای'))
+    add_handler(CallbackQueryHandler(handle_convert_video_message, pattern='🎥 convert to circular video'))
+
+    add_handler(CallbackQueryHandler(handle_convert_video_to_gif_message, pattern='📷 تبدیل ویدیو به گیف'))
+    add_handler(CallbackQueryHandler(handle_convert_video_to_gif_message, pattern='📷 convert video to gif'))
+
+    # add_handler(MessageHandler(
+    #     (Filters.regex('^(🎥 convert to circular video)$') | Filters.regex('^(🎥 تبدیل به ویدیو دایره‌ای)$')),
+    #     handle_convert_video_message)
+    # )
+    # add_handler(MessageHandler(
+    #     Filters.regex('^(📷 convert video to gif)$') | Filters.regex('^(📷 تبدیل ویدیو به گیف)$'),
+    #     handle_convert_video_to_gif_message)
+    # )
 
     #######################
     # Convert Audio #
