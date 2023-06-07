@@ -469,17 +469,24 @@ def generate_tag_editor_video_keyboard(language: str) -> ReplyKeyboardMarkup:
     **Returns:**
      ReplyKeyboardMarkup instance
     """
-    return (
-        ReplyKeyboardMarkup(
-            [
-                [
-                    translate_key_to('BTN_CONVERT_VIDEO_TO_CIRCLE', language),
-                    translate_key_to('BTN_CONVERT_VIDEO_TO_GIF', language),
-                ],
-            ],
-            resize_keyboard=True,
-        )
-    )
+
+    button_keyboard = [
+        [InlineKeyboardButton(translate_key_to('BTN_CONVERT_VIDEO_TO_CIRCLE', language), callback_data=translate_key_to('BTN_CONVERT_VIDEO_TO_CIRCLE', language))],
+        [InlineKeyboardButton(translate_key_to('BTN_CONVERT_VIDEO_TO_GIF', language), callback_data=translate_key_to('BTN_CONVERT_VIDEO_TO_GIF', language))],
+    ]
+
+    return button_keyboard
+    # return (
+    #     ReplyKeyboardMarkup(
+    #         [
+    #             [
+    #                 translate_key_to('BTN_CONVERT_VIDEO_TO_CIRCLE', language),
+    #                 translate_key_to('BTN_CONVERT_VIDEO_TO_GIF', language),
+    #             ],
+    #         ],
+    #         resize_keyboard=True,
+    #     )
+    # )
 
 def save_tags_to_file(file: str, tags: dict, new_art_path: str) -> str:
     """Create an return an instance of `tag_editor_keyboard`
