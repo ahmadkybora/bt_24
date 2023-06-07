@@ -440,7 +440,7 @@ def show_module_selector_video(update: Update, context: CallbackContext) -> None
 
     module_selector_keyboard = generate_module_selector_video_keyboard(lang)
 
-    update.message.reply_text(
+    update.callback_query.message.edit_text(
         translate_key_to(lp.ASK_WHICH_MODULE, lang),
         reply_to_message_id=update.effective_message.message_id,
         reply_markup=InlineKeyboardMarkup(module_selector_keyboard)
