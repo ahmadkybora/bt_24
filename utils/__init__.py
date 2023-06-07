@@ -369,8 +369,8 @@ def generate_module_selector_video_keyboard(language: str) -> ReplyKeyboardMarku
     """
 
     button_keyboard = [
-        [InlineKeyboardButton(translate_key_to('BTN_CONVERT_VIDEO_TO_CIRCLE', language))],
-        [InlineKeyboardButton(translate_key_to('BTN_CONVERT_VIDEO_TO_GIF', language))],
+        [InlineKeyboardButton(translate_key_to('BTN_CONVERT_VIDEO_TO_CIRCLE', language), callback_data=translate_key_to('BTN_CONVERT_VIDEO_TO_CIRCLE', language))],
+        [InlineKeyboardButton(translate_key_to('BTN_CONVERT_VIDEO_TO_GIF', language), callback_data=translate_key_to('BTN_CONVERT_VIDEO_TO_GIF', language))],
     ]
 
     return button_keyboard
